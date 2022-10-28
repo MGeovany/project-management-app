@@ -7,26 +7,23 @@ function App() {
 
   return (
     <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div className="body">
+        <div className="background">
+          <div className="shape"></div>
+          <div className="shape"></div>
+        </div>
+        <form>
+          <img className="login_img" src="https://cdn-icons-png.flaticon.com/512/5087/5087579.png" />
+          <label>Usuario</label>
+          <input type="text" placeholder="Usuario" id="username" />
+
+          <label>Contraseña</label>
+          <input type="password" placeholder="Contraseña" id="password" />
+
+          <button>Iniciar sesión</button>
+
+        </form>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </div>
   )
 }
