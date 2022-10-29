@@ -24,10 +24,7 @@ export const Login = () => {
         Bienvenido a Project Flow 🚀
       </Title>
       <Text color="dimmed" size="sm" align="center" mt={5}>
-        Aun no tienes una cuenta?{" "}
-        <Link to="/FormAccount">
-          <a size="sm">Crear cuenta</a>
-        </Link>
+        Aun no tienes una cuenta? <Link to="/FormAccount">Crear cuenta</Link>
       </Text>
 
       <Paper withBorder shadow="md" p={30} mt={30} radius="md">
@@ -45,9 +42,7 @@ export const Login = () => {
           mt="md"
         />
         <Group pt={20} position="apart" mt="md">
-          <Link to="Forgot">
-            <a size="sm">Olvide mi contraseña</a>
-          </Link>
+          <Link to="Forgot">Olvide mi contraseña</Link>
         </Group>
         <Button fullWidth mt="xl">
           Iniciar Sesion
