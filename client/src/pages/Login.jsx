@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import {
   TextInput,
   PasswordInput,
@@ -9,93 +8,42 @@ import {
   Group,
   Button,
 } from "@mantine/core";
-
-import React, { useState } from "react";
-
-import { IconX } from "@tabler/icons";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 import { useForm } from "@mantine/form";
 
-export class Auth {
-  static validate = async function (usuario, contrasena) {
-    let resultValidate = { access: false, data: null };
-
-    return await fetch("http://localhost:4000/project_flow/authenticate", {
-      method: "POST",
-      body: JSON.stringify({ usuario: usuario, contrasena: contrasena }),
-      headers: { "Content-type": "application/json; charset=UTF-8" },
-    })
-      .then((response) => response.json())
-      .then((json) => {
-        if (json.usuario) {
-          resultValidate.access = true;
-          resultValidate.data = json;
-          return resultValidate;
-        } else {
-          resultValidate.access = false;
-          resultValidate.data = "Usuario o contraseña incorrecta";
-          return resultValidate;
-        }
-      })
-      .catch((err) => {
-        resultValidate.access = false;
-        resultValidate.data = "Ocurrio un error al validar el acceso";
-        return resultValidate;
-      });
-  };
-}
+const BASE_URL = "http://localhost:4000/project_flow/authenticate";
 
 export const Login = () => {
-  const [showNotification, setShowNotification] = useState(false);
-  const [notificationLoading, setNotificationLoading] = useState(true);
-  const [messageNotificationError, setMessageNotificationError] =
-    useState(true);
+  const navigate = useNavigate();
+
   const form = useForm({
     initialValues: {
-      usuario: "",
+      username: "",
       password: "",
     },
   });
 
   const validateAuth = () => {
     return form.onSubmit((values) => {
-      setShowNotification(true);
-      setNotificationLoading(true);
-      Auth.validate(values.usuario, values.password).then((response) => {
-        if (response.access) {
-          let data = response.data;
-          dispatch(
-            login({
-              usuario: data.usuario,
-              correo: data.correo,
-              nombre: data.nombre,
-            })
-          );
-        } else {
-          setMessageNotificationError(response.data);
-          setNotificationLoading(false);
-        }
-      });
+      var config = {
+        method: "post",
+        url: BASE_URL,
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        data: values,
+      };
+      axios(config)
+        .then(function (response) {
+          navigate("/home");
+          console.log(JSON.stringify(response.data));
+        })
+        .catch(function (error) {
+          navigate("/");
+          console.log(error);
+        });
     });
-  };
-
-  const NotificationLogin = () => {
-    if (showNotification) {
-      return notificationLoading ? (
-        <Notification
-          loading
-          title="Verificando acceso"
-          disallowClose
-        ></Notification>
-      ) : (
-        <Notification
-          icon={<IconX size={18} />}
-          color="red"
-          onClose={() => setShowNotification(false)}
-        >
-          {messageNotificationError}
-        </Notification>
-      );
-    }
   };
 
   return (
@@ -120,7 +68,7 @@ export const Login = () => {
             label="Correo:"
             placeholder="correo@gmail.com"
             required
-            {...form.getInputProps("usuario")}
+            {...form.getInputProps("username")}
           />
           <PasswordInput
             py={10}
