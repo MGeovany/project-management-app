@@ -36,7 +36,7 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-export const Forgot = () => {
+export const ResetPassword = () => {
   const { classes } = useStyles();
   return (
     <Container size={460} my={30}>
@@ -56,7 +56,7 @@ export const Forgot = () => {
               <Box ml={5}>Volver a login</Box>
             </Center>
           </Link>
-          <Button className={classes.control}>Resetear Contraseña</Button>
+          <Button className={classes.control}>Restablecer Contraseña</Button>
         </Group>
       </Paper>
     </Container>

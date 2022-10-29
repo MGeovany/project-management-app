@@ -5,15 +5,16 @@ import {
   PasswordInput,
   Paper,
   Title,
-  Text,
+  Center,
+  Box,
   Container,
-  Group,
   Button,
 } from "@mantine/core";
+import { IconArrowLeft } from "@tabler/icons";
 
-export const Login = () => {
+export const Registration = () => {
   return (
-    <Container size={500} my={120}>
+    <Container size={600} my={100}>
       <Title
         align="center"
         sx={(theme) => ({
@@ -21,11 +22,8 @@ export const Login = () => {
           fontWeight: 900,
         })}
       >
-        Bienvenido a Project Flow 🚀
+        Crear Cuenta para Project Flow 🚀
       </Title>
-      <Text color="dimmed" size="sm" align="center" mt={5}>
-        Aun no tienes una cuenta? <Link to="/FormAccount">Crear cuenta</Link>
-      </Text>
 
       <Paper withBorder shadow="md" p={30} mt={30} radius="md">
         <TextInput
@@ -36,16 +34,28 @@ export const Login = () => {
         />
         <PasswordInput
           py={10}
-          label="Contrasena:"
-          placeholder="Tu Contrasena"
+          label="Contraseña:"
+          placeholder="Contraseña"
           required
           mt="md"
         />
-        <Group pt={20} position="apart" mt="md">
-          <Link to="Forgot">Olvide mi contraseña</Link>
-        </Group>
+        <PasswordInput
+          py={10}
+          label="Confirmar Contraseña:"
+          placeholder="Contraseña"
+          required
+          mt="md"
+        />
+        <Link to="/">
+          <Center inline my={3}>
+            <IconArrowLeft size={14} stroke={1.5} />
+            <Box ml={5}>
+              <p>Volver a login</p>
+            </Box>
+          </Center>
+        </Link>
         <Button fullWidth mt="xl">
-          Iniciar Sesion
+          Crear Cuenta
         </Button>
       </Paper>
     </Container>

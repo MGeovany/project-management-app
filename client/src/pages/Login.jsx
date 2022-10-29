@@ -1,20 +1,19 @@
 import React from "react";
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 import {
   TextInput,
   PasswordInput,
   Paper,
   Title,
-  Center,
-  Box,
+  Text,
   Container,
+  Group,
   Button,
 } from "@mantine/core";
-import { IconArrowLeft } from '@tabler/icons';
 
-export const FormAccount = () => {
+export const Login = () => {
   return (
-    <Container size={600} my={100}>
+    <Container size={500} my={120}>
       <Title
         align="center"
         sx={(theme) => ({
@@ -22,8 +21,11 @@ export const FormAccount = () => {
           fontWeight: 900,
         })}
       >
-        Crear Cuenta para Project Flow 🚀
+        Bienvenido a Project Flow 🚀
       </Title>
+      <Text color="dimmed" size="sm" align="center" mt={5}>
+        Aun no tienes una cuenta? <Link to="/register">Crear cuenta</Link>
+      </Text>
 
       <Paper withBorder shadow="md" p={30} mt={30} radius="md">
         <TextInput
@@ -34,26 +36,16 @@ export const FormAccount = () => {
         />
         <PasswordInput
           py={10}
-          label="Contraseña:"
-          placeholder="Contraseña"
+          label="Contrasena:"
+          placeholder="Tu Contrasena"
           required
           mt="md"
         />
-        <PasswordInput
-          py={10}
-          label="Confirmar Contraseña:"
-          placeholder="Contraseña"
-          required
-          mt="md"
-        />
-        <Link to="/">
-            <Center inline my={3} >
-                    <IconArrowLeft size={14} stroke={1.5} />
-                    <Box ml={5}><p>Volver a login</p></Box>
-            </Center>
-        </Link>
+        <Group pt={20} position="apart" mt="md">
+          <Link to="/reset">Olvide mi contraseña</Link>
+        </Group>
         <Button fullWidth mt="xl">
-          Crear Cuenta
+          Iniciar Sesion
         </Button>
       </Paper>
     </Container>
