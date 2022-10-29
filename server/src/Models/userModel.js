@@ -4,11 +4,11 @@ const saltRounds = 10;
 
 const userSchema = new mongoose.Schema(
   {
-    userName: { type: String, required: true, unique: true },
+    username: { type: String, required: true, unique: true },
     password: { type: String, required: true },
   },
   {
-    collection: "Users",
+    collection: "users",
   }
 );
 userSchema.pre("save", function (next) {
@@ -35,4 +35,4 @@ userSchema.methods.isCorrectPassword = function (candidatePassword, callback) {
     }
   });
 };
-module.exports = mongoose.model("Users", userSchema);
+module.exports = mongoose.model("users", userSchema);
