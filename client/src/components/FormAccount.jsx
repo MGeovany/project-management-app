@@ -1,19 +1,20 @@
 import React from "react";
+import { Link } from "react-router-dom"
 import {
   TextInput,
   PasswordInput,
-  Checkbox,
   Paper,
   Title,
-  Text,
+  Center,
+  Box,
   Container,
-  Group,
   Button,
 } from "@mantine/core";
+import { IconArrowLeft } from '@tabler/icons';
 
-export const Login = () => {
+export const FormAccount = () => {
   return (
-    <Container size={500} my={200}>
+    <Container size={600} my={100}>
       <Title
         align="center"
         sx={(theme) => ({
@@ -21,14 +22,8 @@ export const Login = () => {
           fontWeight: 900,
         })}
       >
-        Bienvenido a Project Flow 🚀
+        Crear Cuenta para Project Flow 🚀
       </Title>
-      <Text color="dimmed" size="sm" align="center" mt={5}>
-        Aun no tienes una cuenta?{" "}
-        <a href="#" size="sm" onClick={(event) => event.preventDefault()}>
-          Crear cuenta
-        </a>
-      </Text>
 
       <Paper withBorder shadow="md" p={30} mt={30} radius="md">
         <TextInput
@@ -39,18 +34,26 @@ export const Login = () => {
         />
         <PasswordInput
           py={10}
-          label="Contrasena:"
-          placeholder="Tu Contrasena"
+          label="Contraseña:"
+          placeholder="Contraseña"
           required
           mt="md"
         />
-        <Group pt={20} position="apart" mt="md">
-          <a onClick={(event) => event.preventDefault()} href="#" size="sm">
-            Olvide mi contrasena
-          </a>
-        </Group>
+        <PasswordInput
+          py={10}
+          label="Confirmar Contraseña:"
+          placeholder="Contraseña"
+          required
+          mt="md"
+        />
+        <Link to="/">
+            <Center inline my={3} >
+                    <IconArrowLeft size={14} stroke={1.5} />
+                    <Box ml={5}><p>Volver a login</p></Box>
+            </Center>
+        </Link>
         <Button fullWidth mt="xl">
-          Iniciar Sesion
+          Crear Cuenta
         </Button>
       </Paper>
     </Container>
