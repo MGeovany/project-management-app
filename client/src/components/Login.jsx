@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 import {
   TextInput,
   PasswordInput,
@@ -26,9 +26,7 @@ export const Login = () => {
       <Text color="dimmed" size="sm" align="center" mt={5}>
         Aun no tienes una cuenta?{" "}
         <Link to="/FormAccount">
-        <a size="sm">
-          Crear cuenta
-        </a>
+          <a size="sm">Crear cuenta</a>
         </Link>
       </Text>
 
@@ -47,10 +45,8 @@ export const Login = () => {
           mt="md"
         />
         <Group pt={20} position="apart" mt="md">
-          <Link to="Forgot"> 
-            <a size="sm">
-              Olvide mi contraseña
-            </a>
+          <Link to="Forgot">
+            <a size="sm">Olvide mi contraseña</a>
           </Link>
         </Group>
         <Button fullWidth mt="xl">
