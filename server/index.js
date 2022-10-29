@@ -1,37 +1,24 @@
 require("dotenv").config();
-
 const express = require("express");
-const cors = require("cors");
 const mongoose = require("mongoose");
-const cookieParser = require("cookie-parser");
+const cors = require("cors");
+const bodyParser = require("body-parser");
+const userRoute = require("./src/Routes/userRoute");
 
 const app = express();
-const PORT = process.env.PORT || 4001;
-const BASE_URL = process.env.NODE_MONGO_URL;
-
-app.listen(PORT, () => {
-  console.log("Server started on PORT:", PORT);
-});
-
-mongoose
-  .connect(BASE_URL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => {
-    console.log("DB connection good 🦸");
-  })
-  .catch((err) => {
-    console.log(err.message);
-  });
+const PORT = process.env.PORT || 3000;
+const BDURL = process.env.NODE_GAL_UL;
 
 app.use(
   cors({
-    origin: ["http://localhost:3000"],
-    method: ["GET", "POST"],
-    credentials: true,
+    origin: "*",
   })
 );
+app.listen(PORT, () =>
+  console.log("-> Corriendo en: 🛫 \nhttp://localhost:" + PORT)
+);
+mongoose.connect(BDURL).catch((error) => handleError(error));
 
-app.use(cookieParser());
-app.use(express.json());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use("/project", userRoute);
