@@ -1,4 +1,6 @@
 const userModel = require("../Models/userModel");
+require("dotenv").config();
+const jwt=require('jsonwebtoken');
 
 function userRegister(req, res) {
   const user = new userModel({
@@ -7,7 +9,7 @@ function userRegister(req, res) {
   });
   user.save((err) => {
     if (err) {
-      res.status(500).send("error al registrar al usuario" + err);
+      res.status(500).send("error al registrar al usuario " + err);
     } else {
       res.status(200).send("usuario registrado");
     }
@@ -33,9 +35,21 @@ function userAuthenticate(req, res) {
           res.status(500).send("usuario y/o contrasenia incorrecta");
         }
       });
-    }
+    }  
+    const token = jwt.sign(
+      { user_id: user._id, 
+        username:user.username
+      }, process.env.TOKEN_KEY);
+    
+    res.header('auth-token', token).json({
+      error: null,
+      data: { token },
+      message: 'Bienvenido'
+  })
   });
 }
+
+
 module.exports = {
   userAuthenticate,
   userRegister,
