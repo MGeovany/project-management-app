@@ -41,11 +41,8 @@ function userAuthenticate(req, res) {
         username:user.username
       }, process.env.TOKEN_KEY);
     
-    res.header('auth-token', token).json({
-      error: null,
-      data: { token },
-      message: 'Bienvenido'
-  })
+    res.header ('auth-token', token)
+    console.log(token)
   });
 }
 
