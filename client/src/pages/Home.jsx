@@ -11,9 +11,11 @@ import {
   Button,
   Group,
   Grid,
+  Container,
   Blockquote,
+  Title,
 } from "@mantine/core";
-import { IconFlame, IconLogout } from "@tabler/icons";
+import { IconDashboard, IconFlame, IconLogout, IconMenu, IconUser, IconUsers } from "@tabler/icons";
 
 export const Home = () => {
   return (
@@ -21,13 +23,68 @@ export const Home = () => {
       padding="md"
       navbar={
         <Navbar width={{ base: 300 }} height={1000} p="xs">
-          
+          <Title align="center"
+          sx={(theme) => ({
+          fontFamily: `Greycliff CF, ${theme.fontFamily}`,
+          fontWeight: 800,
+          paddingBottom: 70
+          })}>
+            Project Flow 🚀
+          </Title>
+          <Container sx={(theme) => ({
+            margin:0,
+            padding:0,
+            display: "flex",
+            flexDirection: "column"
+          })}>
             <Link to="/">
-          <Button leftIcon={<IconLogout />} variant="white">
-            Log Out
-          </Button>
+              <Button leftIcon={<IconDashboard />} variant="white" color="dark"
+              sx={(theme) => ({
+                fontFamily: `Greycliff CF, ${theme.fontFamily}`,
+                fontSize: 16,
+                marginBottom: 20
+                })}>
+                Dashboard
+              </Button>
             </Link>
-          
+            <Link to="/">
+              <Button leftIcon={<IconUser />} variant="white" color="dark"
+              sx={(theme) => ({
+                fontFamily: `Greycliff CF, ${theme.fontFamily}`,
+                fontSize: 16,
+                marginBottom: 20
+                })}>
+                Perfil 
+              </Button>
+            </Link>
+            <Link to="/">
+              <Button leftIcon={<IconUsers />} variant="white" color="dark"
+              sx={(theme) => ({
+                fontFamily: `Greycliff CF, ${theme.fontFamily}`,
+                fontSize: 16,
+                marginBottom: 20
+                })}>
+                Administradores
+              </Button>
+            </Link>
+            <Container sx={() => ({
+            margin:0,
+            padding:0,
+            height:370,
+            display: "flex",
+            flexDirection: "column",
+            justifyContent:"end"})}>
+              <Link to="/login">
+                <Button leftIcon={<IconLogout />} variant="white"
+                sx={(theme) => ({
+                  fontFamily: `Greycliff CF, ${theme.fontFamily}`,
+                  fontSize: 16,
+                  })}>
+                  Sign in
+                </Button>
+              </Link>
+            </Container>
+          </Container>          
         </Navbar>
       }
       header={

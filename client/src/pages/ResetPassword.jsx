@@ -50,7 +50,7 @@ export const ResetPassword = () => {
       <Paper withBorder shadow="md" p={30} radius="md" mt="xl">
         <TextInput label="Tu email" placeholder="correo@correo.com" required />
         <Group position="apart" mt="lg" className={classes.controls}>
-          <Link to="/">
+          <Link to="/login">
             <Center inline>
               <IconArrowLeft size={12} stroke={1.5} />
               <Box ml={5}>Volver a login</Box>

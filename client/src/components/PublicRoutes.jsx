@@ -14,7 +14,7 @@ const isLoginPage = () => {
 
 const PublicRoute = () => {
   return useAuth() ? (
-    <Navigate to="/home" />
+    <Navigate to="/" />
   ) : isLoginPage() ? (
     <Outlet />
   ) : (
