@@ -36,11 +36,11 @@ export const Login = () => {
       };
       axios(config)
         .then(function (response) {
-          navigate("/home");
+          navigate("/");
           console.log(JSON.stringify(response.data));
         })
         .catch(function (error) {
-          navigate("/");
+          navigate("/login");
           console.log(error);
         });
     });
@@ -78,7 +78,7 @@ export const Login = () => {
             mt="md"
             {...form.getInputProps("password")}
           />
-          <Group pt={20} position="apart" mt="md">
+          <Group pt={10} position="apart" mt="md">
             <Link to="/reset">Olvide mi contraseña</Link>
           </Group>
           <Button fullWidth mt="xl" type="submit">

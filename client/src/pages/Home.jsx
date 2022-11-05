@@ -11,9 +11,17 @@ import {
   Button,
   Group,
   Grid,
+  Container,
   Blockquote,
+  Title,
 } from "@mantine/core";
-import { IconFlame, IconLogout } from "@tabler/icons";
+import {
+  IconDashboard,
+  IconFlame,
+  IconLogout,
+  IconUser,
+  IconUsers,
+} from "@tabler/icons";
 
 export const Home = () => {
   return (
@@ -21,28 +29,93 @@ export const Home = () => {
       padding="md"
       navbar={
         <Navbar width={{ base: 300 }} height={1000} p="xs">
-          
+          <Title
+            align="center"
+            sx={(theme) => ({
+              fontFamily: `Greycliff CF, ${theme.fontFamily}`,
+              fontWeight: 800,
+              paddingBottom: 70,
+            })}
+          >
+            Project Flow🚀
+          </Title>
+          <Container
+            sx={(theme) => ({
+              margin: 0,
+              padding: 0,
+              display: "flex",
+              flexDirection: "column",
+            })}
+          >
             <Link to="/">
-          <Button leftIcon={<IconLogout />} variant="white">
-            Log Out
-          </Button>
+              <Button
+                leftIcon={<IconDashboard />}
+                variant="white"
+                color="dark"
+                sx={(theme) => ({
+                  fontFamily: `Greycliff CF, ${theme.fontFamily}`,
+                  fontSize: 16,
+                  marginBottom: 60,
+                })}
+              >
+                Dashboard
+              </Button>
             </Link>
-          
+            <Link to="/">
+              <Button
+                leftIcon={<IconUser />}
+                variant="white"
+                color="dark"
+                sx={(theme) => ({
+                  fontFamily: `Greycliff CF, ${theme.fontFamily}`,
+                  fontSize: 16,
+                  marginBottom: 60,
+                })}
+              >
+                Perfil
+              </Button>
+            </Link>
+            <Link to="/">
+              <Button
+                leftIcon={<IconUsers />}
+                variant="white"
+                color="dark"
+                sx={(theme) => ({
+                  fontFamily: `Greycliff CF, ${theme.fontFamily}`,
+                  fontSize: 16,
+                  marginBottom: 60,
+                })}
+              >
+                Administradores
+              </Button>
+            </Link>
+            <Container
+              sx={() => ({
+                margin: 0,
+                padding: 0,
+                height: 370,
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "end",
+              })}
+            >
+              <Link to="/login">
+                <Button
+                  leftIcon={<IconLogout />}
+                  variant="white"
+                  sx={(theme) => ({
+                    fontFamily: `Greycliff CF, ${theme.fontFamily}`,
+                    fontSize: 16,
+                  })}
+                >
+                  Sign Out
+                </Button>
+              </Link>
+            </Container>
+          </Container>
         </Navbar>
       }
-      header={
-        <Header height={60} p="xs" color="black">
-          {}
-        </Header>
-      }
-      styles={(theme) => ({
-        main: {
-          backgroundColor:
-            theme.colorScheme === "dark"
-              ? theme.colors.dark[8]
-              : theme.colors.gray[0],
-        },
-      })}
+      header={<Header height={60} p="xs" color="black" />}
     >
       <Blockquote
         cite="This app is under construction..."

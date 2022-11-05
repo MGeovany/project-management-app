@@ -43,7 +43,7 @@ export const Registration = () => {
       };
       axios(config)
         .then(function (response) {
-          navigate("/");
+          navigate("/login");
           console.log(JSON.stringify(response.data));
         })
         .catch(function (error) {
@@ -90,7 +90,7 @@ export const Registration = () => {
             {...form.getInputProps("confirmPassword")}
             mt="md"
           />
-          <Link to="/">
+          <Link to="/login">
             <Center inline my={3}>
               <IconArrowLeft size={14} stroke={1.5} />
               <Box ml={5}>
