@@ -5,6 +5,7 @@ import {
   Title,
   Text,
   Container,
+  Group,
   Button,
 } from "@mantine/core";
 import { Link, useNavigate } from "react-router-dom";
@@ -77,15 +78,9 @@ export const Login = () => {
             mt="md"
             {...form.getInputProps("password")}
           />
-          <Container sx={() => ({
-            margin:0,
-            padding:0,
-            display: "flex",
-            flexDirection: "row",
-            justifyContent:"space-between"})}>
-          <Link to="/reset"><Text>Olvide mi contraseña</Text></Link>
-          <Link to="/"><Text>Volver a la pagina principal</Text></Link>
-          </Container>
+          <Group pt={10} position="apart" mt="md">
+            <Link to="/reset">Olvide mi contraseña</Link>
+          </Group>
           <Button fullWidth mt="xl" type="submit">
             Iniciar Sesion
           </Button>
