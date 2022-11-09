@@ -8,7 +8,7 @@ const userSchema = new mongoose.Schema(
     password: { type: String, required: true },
   },
   {
-    collection: "users",
+    collection: "User",
   }
 );
 userSchema.pre("save", function (next) {
@@ -35,4 +35,4 @@ userSchema.methods.isCorrectPassword = function (candidatePassword, callback) {
     }
   });
 };
-module.exports = mongoose.model("users", userSchema);
+module.exports = mongoose.model("User", userSchema);
