@@ -3,6 +3,7 @@ import { ResetPassword } from "./pages/ResetPassword";
 import { Registration } from "./pages/Registration";
 import { Routes, Route } from "react-router-dom";
 import { Home } from "./pages/Home";
+import { Tablero } from "./pages/Tablero";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/reset" element={<ResetPassword />} />
         <Route path="/register" element={<Registration />} />
+        <Route path="/tablero" element={<Tablero/>}/>
       </Routes>
     </div>
   );
