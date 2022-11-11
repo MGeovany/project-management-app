@@ -18,7 +18,13 @@ import {
   Notification,
   Center,
 } from "@mantine/core";
-import { IconFlame, IconLogout } from "@tabler/icons";
+import {
+  IconDashboard,
+  IconFlame,
+  IconLogout,
+  IconUser,
+  IconUsers,
+} from "@tabler/icons";
 
 export const Profile = () => {
   return (
@@ -26,9 +32,58 @@ export const Profile = () => {
       padding="md"
       navbar={
         <Navbar width={{ base: 300 }} height={1000} p="xs">
+          <Link to="/home">
+            <Button
+              leftIcon={<IconDashboard />}
+              variant="white"
+              color="dark"
+              sx={(theme) => ({
+                fontFamily: `Greycliff CF, ${theme.fontFamily}`,
+                fontSize: 16,
+                marginBottom: 60,
+              })}
+            >
+              Dashboard
+            </Button>
+          </Link>
+          <Link to="/profile">
+            <Button
+              leftIcon={<IconUser />}
+              variant="white"
+              color="dark"
+              sx={(theme) => ({
+                fontFamily: `Greycliff CF, ${theme.fontFamily}`,
+                fontSize: 16,
+                marginBottom: 60,
+              })}
+            >
+              Perfil
+            </Button>
+          </Link>
           <Link to="/">
-            <Button leftIcon={<IconLogout />} variant="white">
-              Log Out
+            <Button
+              leftIcon={<IconUsers />}
+              variant="white"
+              color="dark"
+              sx={(theme) => ({
+                fontFamily: `Greycliff CF, ${theme.fontFamily}`,
+                fontSize: 16,
+                marginBottom: 60,
+              })}
+            >
+              Administradores
+            </Button>
+          </Link>
+          <Link to="/login">
+            <Button
+              leftIcon={<IconLogout />}
+              variant="white"
+              sx={(theme) => ({
+                fontFamily: `Greycliff CF, ${theme.fontFamily}`,
+                fontSize: 16,
+              })}
+            >
+              Sign Out
             </Button>
           </Link>
         </Navbar>
@@ -128,23 +183,32 @@ export const Profile = () => {
 
         <Grid.Col span={4}>
           <Card shadow="sm" p="lg" radius="md" withBorder>
-            <Center style={{ width: 450}}>
-            <Avatar
-              size={270}
-              component="a"
-              target="_blank"
-              src="https://wac-cdn.atlassian.com/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=615"
-              alt="it's me"
+            <Center style={{ width: 450 }}>
+              <Avatar
+                size={270}
+                component="a"
+                target="_blank"
+                src="https://wac-cdn.atlassian.com/dam/jcr:ba03a215-2f45-40f5-8540-b2015223c918/Max-R_Headshot%20(1).jpg?cdnVersion=615"
+                alt="it's me"
               />
-
-              </Center>
-<br></br>
-              <Center>
-                    <Button variant="light" color="blue" fullWidth mt="md" radius="md"> Seleccionar imagen</Button>
-              </Center>
+            </Center>
+            <br></br>
+            <Center>
+              <Button
+                variant="light"
+                color="blue"
+                fullWidth
+                mt="md"
+                radius="md"
+              >
+                {" "}
+                Seleccionar imagen
+              </Button>
+            </Center>
           </Card>
         </Grid.Col>
       </Grid>
     </AppShell>
   );
 };
+
