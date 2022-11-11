@@ -8,12 +8,12 @@ import {
   Image,
   Text,
   Badge,
-  Button,
   Group,
+  Button,
   Grid,
   Container,
-  Blockquote,
   Title,
+  Avatar,
 } from "@mantine/core";
 import {
   IconDashboard,
@@ -23,7 +23,20 @@ import {
   IconUsers,
 } from "@tabler/icons";
 
+import { Doughnut } from 'react-chartjs-2';
+
 export const Home = () => {
+  const avatar = (
+    <Avatar alt="Avatar for badge" size={24} mr={5} src="image-link" />
+  );
+
+  const data = {
+    labels: ["Pendientes", "Finalizadas", "Completadas"],
+    datasets: [{
+      data: [20,60,20]
+    }]
+  }
+
   return (
     <AppShell
       padding="md"
@@ -61,7 +74,7 @@ export const Home = () => {
                 Dashboard
               </Button>
             </Link>
-            <Link to="/">
+            <Link to="/profile">
               <Button
                 leftIcon={<IconUser />}
                 variant="white"
@@ -117,97 +130,75 @@ export const Home = () => {
       }
       header={<Header height={60} p="xs" color="black" />}
     >
-      <Blockquote
-        cite="This app is under construction..."
-        icon={<IconFlame size={24} />}
-      >
-        Welcome to Project Flow!
-      </Blockquote>
+     
 
       <Grid>
-        <Grid.Col span={4}>
+        <Grid.Col span={6}>
           <Card shadow="sm" p="lg" radius="md" withBorder>
-            <Card.Section>
-              <Image
-                src="https://web-static.wrike.com/blog/content/uploads/2016/06/La-importancia-de-la-gestio-n-de-proyectos-preguntas-y-respuestas-con-Robert-Kelly.jpg?av=9cca9b92e52017d677996195ca78c04a"
-                height={200}
-                alt="Norway"
-              />
-            </Card.Section>
+            <Grid>
+              <Grid.Col span={3}>
+                <Badge
+                  variant="gradient"
+                  gradient={{ from: "teal", to: "blue", deg: 60 }}
+                >
+                  Project Flow
+                </Badge>
+              </Grid.Col>
+              <Grid.Col span={3}>
+                <Badge
+                  sx={{ paddingLeft: 0 }}
+                  size="lg"
+                  radius="xl"
+                  color="teal"
+                  leftSection={avatar}
+                >
+                  %LIDER%
+                </Badge>
+              </Grid.Col>
+            </Grid>
 
-            <Group position="apart" mt="md" mb="xs">
-              <Text weight={500}>¿Que somos?</Text>
-              <Badge color="pink" variant="light">
-                Muy pronto
-              </Badge>
-            </Group>
-
-            <Text size="sm" color="dimmed">
-              Project Flow es una herramienta visual que permite a los equipos
-              gestionar cualquier tipo de proyecto y flujo de trabajo, así como
-              supervisar tareas.
-            </Text>
+            <Grid>
+              <Grid.Col span={6}>
+                <Card shadow="sm" p="lg" radius="md" withBorder>
+                  <Text size="sm" color="dimmed">
+                    Etapa: %ETAPA%
+                  </Text>
+                  <Text size="sm" color="dimmed">
+                    Estado: %ESTADO%
+                  </Text>
+                  <Text size="sm" color="dimmed">
+                    Fecha de inicio: %INICIO%
+                  </Text>
+                  <Text size="sm" color="dimmed">
+                    Fecha Fin: %FIN%
+                  </Text>
+                </Card>
+              </Grid.Col>
+              <Grid.Col span={6}>
+                <Card shadow="sm" p="lg" radius="md" withBorder>
+                  <Text size="sm" color="dimmed">
+                    Tareas en desarrollo: %DESARROLLO%
+                  </Text>
+                  <Text size="sm" color="dimmed">
+                    Tareas finalizadas: %FINALIZADO%
+                  </Text>
+                  <Text size="sm" color="dimmed">
+                    Tareas pendientes: %PENDIENTE%
+                  </Text>
+                  <Text size="sm" color="dimmed">
+                    Completado al: %100%
+                  </Text>
+                </Card>
+              </Grid.Col>
+            </Grid>
 
             <Button variant="light" color="blue" fullWidth mt="md" radius="md">
-              Proximamente
-            </Button>
-          </Card>
-        </Grid.Col>
-        <Grid.Col span={4}>
-          <Card shadow="sm" p="lg" radius="md" withBorder>
-            <Card.Section>
-              <Image
-                src="https://www.manageengine.com/products/service-desk/itil/images/it-project-management-software.png"
-                height={200}
-                alt="Norway"
-              />
-            </Card.Section>
-
-            <Group position="apart" mt="md" mb="xs">
-              <Text weight={500}>Facil manejo</Text>
-              <Badge color="pink" variant="light">
-                Intuitivo
-              </Badge>
-            </Group>
-
-            <Text size="sm" color="dimmed">
-              Añade archivos, checklists o incluso automatizaciones:
-              personalízalo todo según las necesidades de tu equipo.
-            </Text>
-
-            <Button variant="light" color="blue" fullWidth mt="md" radius="md">
-              Proximamente
-            </Button>
-          </Card>
-        </Grid.Col>
-        <Grid.Col span={4}>
-          <Card shadow="sm" p="lg" radius="md" withBorder>
-            <Card.Section>
-              <Image
-                src="https://cdnb.ganttpro.com/uploads/2022/07/gestion-proyectos.png"
-                height={200}
-                alt="Norway"
-              />
-            </Card.Section>
-
-            <Group position="apart" mt="md" mb="xs">
-              <Text weight={500}>Registro gratis</Text>
-              <Badge color="pink" variant="light">
-                Gratis
-              </Badge>
-            </Group>
-
-            <Text size="sm" color="dimmed">
-              Solo tienes que registrarte, crear un tablero y ¡listo! Monitoriza
-              como avanza tu exitoso proyecto.
-            </Text>
-
-            <Button variant="light" color="blue" fullWidth mt="md" radius="md">
-              Proximamente
+              Ver tablero
             </Button>
           </Card>
         </Grid.Col>
       </Grid>
+
     </AppShell>
   );
 };
