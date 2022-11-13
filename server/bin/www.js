@@ -1,3 +1,9 @@
+#!/usr/bin/env node
+
+/**
+ * Module dependencies.
+ */
+
 const app = require("../app");
 const debug = require("debug")("server:server");
 const http = require("http");
@@ -6,10 +12,22 @@ const mongoose = require("mongoose");
 
 dotenv.config();
 
+/**
+ * Get port from environment and store in Express.
+ */
+
 const port = normalizePort(process.env.PORT || "3000");
 app.set("port", port);
 
+/**
+ * Create HTTP server.
+ */
+
 const server = http.createServer(app);
+
+/**
+ * Listen on provided port, on all network interfaces.
+ */
 
 mongoose
   .connect(process.env.NODE_MONGO_URL)
@@ -24,6 +42,10 @@ mongoose
     process.exit(1);
   });
 
+/**
+ * Normalize a port into a number, string, or false.
+ */
+
 function normalizePort(val) {
   const port = parseInt(val, 10);
 
@@ -33,6 +55,7 @@ function normalizePort(val) {
   }
 
   if (port >= 0) {
+    // port number
     return port;
   }
 

@@ -1,17 +1,17 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit'
 
-const initialState = { value: [] };
+const initialState = { value: [] }
 
 export const boardSlice = createSlice({
-  name: "user",
+  name: 'user',
   initialState,
   reducers: {
     setBoards: (state, action) => {
-      state.value = action.payload;
-    },
-  },
-});
+      state.value = action.payload
+    }
+  }
+})
 
-export const { setBoards } = boardSlice.actions;
+export const { setBoards } = boardSlice.actions
 
-export default boardSlice.reducer;
+export default boardSlice.reducer
