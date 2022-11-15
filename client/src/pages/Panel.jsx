@@ -15,9 +15,9 @@ import {
   IconUser,
   IconUsers,
 } from "@tabler/icons";
-import Kanban from "./Kanban";
+import PanelKanban from "./PanelKanban";
 
-export const Tablero = () => {
+export const Panel = () => {
   return (
     <AppShell
       padding="md"
@@ -66,7 +66,7 @@ export const Tablero = () => {
                   marginBottom: 40,
                 })}
               >
-                Perfil
+                Profile
               </Button>
             </Link>
             <Link to="/">
@@ -80,10 +80,10 @@ export const Tablero = () => {
                   marginBottom: 40,
                 })}
               >
-                Administradores
+                Administrators
               </Button>
             </Link>
-            <Link to="/tablero">
+            <Link to="/panel">
               <Button
                 leftIcon={<IconNotebook />}
                 variant="white"
@@ -94,7 +94,7 @@ export const Tablero = () => {
                   marginBottom: 40,
                 })}
               >
-                Tablero
+                Panel
               </Button>
             </Link>
             <Container
@@ -134,9 +134,9 @@ export const Tablero = () => {
               fontSize: 30,
             })}
           >
-            Tablero🚀
+            Kanban Panel🚀
           </Title>
-        <Kanban/>
+        <PanelKanban/>
     </AppShell>
   );
 };

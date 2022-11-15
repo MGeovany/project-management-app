@@ -3,49 +3,49 @@ import { v4 as uuidv4 } from 'uuid'
 const mockData = [
     {
         id: uuidv4(),
-        title: '🗒️Por Hacer',
+        title: '🗒️To Do',
         tasks: [
             {
                 id: uuidv4(),
-                title: 'Aprender Javascript'
+                title: 'Learn Javascript'
             },
             {
                 id: uuidv4(),
-                title: 'Aprender Git'
+                title: 'Learn Git'
             },
             {
                 id: uuidv4(),
-                title: 'Aprender Python'
+                title: 'Learn Python'
             },
         ]
     },
     {
         id: uuidv4(),
-        title: '✏️En Progreso',
+        title: '✏️In Progress',
         tasks: 
         [
             {
                 id:uuidv4(),
-                title: 'Aprender CSS'
+                title: 'Learn CSS'
             },
             {
                 id:uuidv4(),
-                title: 'Aprender Angular'
+                title: 'Learn Angular'
             }
         ]
     },
     {
         id: uuidv4(),
-        title: '✔️ Terminado',
+        title: '✔️ Finished',
         tasks:
         [
             {
                 id:uuidv4(),
-                title: 'Aprender React'
+                title: 'Learn React'
             },
             {
                 id:uuidv4(),
-                title: 'Aprender Typescript'
+                title: 'Learn Typescript'
             }
         ]
     }

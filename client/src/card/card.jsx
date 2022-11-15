@@ -1,6 +1,6 @@
-import './Card.scss'
+import '../styles/Card.scss'
 
-const Carta = props => {
+const CardKanban = props => {
   return (
     <div className='card'>
         {props.children}
@@ -8,4 +8,4 @@ const Carta = props => {
   )
 }
 
-export default Carta
+export default CardKanban

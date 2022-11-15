@@ -73,7 +73,7 @@ export const Home = () => {
                   marginBottom: 40,
                 })}
               >
-                Perfil
+                Profile
               </Button>
             </Link>
             <Link to="/">
@@ -87,10 +87,10 @@ export const Home = () => {
                   marginBottom: 40,
                 })}
               >
-                Administradores
+                Administrators
               </Button>
             </Link>
-            <Link to="/tablero">
+            <Link to="/panel">
               <Button
                 leftIcon={<IconNotebook />}
                 variant="white"
@@ -101,7 +101,7 @@ export const Home = () => {
                   marginBottom: 40,
                 })}
               >
-                Tablero
+                Panel
               </Button>
             </Link>
             <Container

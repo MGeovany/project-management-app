@@ -1,11 +1,15 @@
 import React from 'react'
-import '../styles/KanbanStyle.scss'
+import '../styles/PanelStyle.scss'
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
 import mockData from './mockData'
 import { useState } from 'react'
-import Carta from '../card/card'
+import CardKanban from '../card/card'
+import { 
+    Container, 
+    Title
+    } from '@mantine/core'
 
-const Kanban = () => {
+const PanelKanban = () => {
     const [data, setData] = useState(mockData)
 
     const onDragEnd = result => {
@@ -34,7 +38,7 @@ const Kanban = () => {
 
     return (
         <DragDropContext onDragEnd={onDragEnd}>
-            <div className="kanban">
+            <Container className="panel">
                 {
                     data.map(section => (
                         <Droppable
@@ -42,15 +46,15 @@ const Kanban = () => {
                             droppableId={section.id}
                         >
                             {(provided) => (
-                                <div
+                                <Container
                                     {...provided.droppableProps}
-                                    className='kanban__section'
+                                    className='panel__section'
                                     ref={provided.innerRef}
                                 >
-                                    <div className="kanban__section__title">
+                                    <Title className="panel__section__title">
                                         {section.title}
-                                    </div>
-                                    <div className="kanban__section__content">
+                                    </Title>
+                                    <Container className="panel__section__content">
                                         {
                                         section.tasks.map((tasks, index) => (
                                             <Draggable
@@ -59,7 +63,7 @@ const Kanban = () => {
                                                 index={index}
                                             >
                                                 {(provided, snapshot) => (
-                                                    <div
+                                                    <Container
                                                     ref={provided.innerRef}
                                                     {...provided.draggableProps}
                                                     {...provided.dragHandleProps}
@@ -69,24 +73,24 @@ const Kanban = () => {
                                                         : '1'
                                                     }}
                                                     >
-                                                        <Carta>
+                                                        <CardKanban>
                                                             {tasks.title}
-                                                        </Carta>
-                                                    </div>
+                                                        </CardKanban>
+                                                    </Container>
                                                 )}
                                             </Draggable>
                                         ))    
                                     }
                                     {provided.placeholder}
-                                    </div>
-                                </div>
+                                    </Container>
+                                </Container>
                             )}
                         </Droppable>
                     ))
                 }
-            </div>
+            </Container>
         </DragDropContext>
     )
 }
 
-export default Kanban
+export default PanelKanban
