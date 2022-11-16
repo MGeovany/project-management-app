@@ -32,7 +32,7 @@ const AuthLayout = () => {
           alignItems: 'center',
           flexDirection: 'column'
         }}>
-          <img src={assets.images.logoDark} style={{ width: '100px' }} alt='app logo' />
+          <h2 style={{ width: '200px' , fontFamily:"cursive"}} alt='app logo'>Project Flow 🚀</h2> 
           <Outlet />
         </Box>
       </Container>
