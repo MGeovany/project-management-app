@@ -135,12 +135,12 @@ const Board = () => {
       }
 
       const newList = boards.filter((e) => e.id !== boardId);
-      /*   if (newList.length === 0) {
+      if (newList.length === 0) {
         navigate("/boards");
       } else {
         navigate(`/boards/${newList[0].id}`);
       }
-       */
+
       dispatch(setBoards(newList));
     } catch (err) {
       alert(err);

@@ -13,6 +13,10 @@ import Board from "./pages/Board";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import { Dashboard } from "./pages/Dashboard";
+import { Projects } from "./pages/Projects";
+import { Profile } from "./pages/Profile";
+import { Blog } from "./pages/Blog";
+import { Logout } from "./pages/Logout";
 
 function App() {
   const theme = createTheme({
@@ -33,6 +37,10 @@ function App() {
             <Route path="boards" element={<Home />} />
             <Route path="boards/:boardId" element={<Board />} />
             <Route path="dashboard" element={<Dashboard />} />
+            <Route path="projects" element={<Projects />} />
+            <Route path="profile" element={<Profile />} />
+            <Route path="blog" element={<Blog />} />
+            <Route path="logout" element={<Logout />} />
           </Route>
         </Routes>
       </BrowserRouter>

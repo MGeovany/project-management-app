@@ -44,9 +44,9 @@ const Sidebar = () => {
 
   useEffect(() => {
     const activeItem = boards.findIndex((e) => e.id === boardId);
-    /* if (boards.length > 0 && boardId === undefined) {
+    if (boards.length > 0 && boardId === undefined) {
       navigate(`/boards/${boards[0].id}`);
-    } */
+    }
     setActiveIndex(activeItem);
   }, [boards, boardId, navigate]);
 
@@ -109,7 +109,7 @@ const Sidebar = () => {
               paddingTop: 10,
             }}
           >
-            <Typography variant="body2" fontWeight="700">
+            <Typography variant="body3" fontWeight="700">
               {user.username}
             </Typography>
             <IconButton onClick={logout}>
@@ -129,8 +129,8 @@ const Sidebar = () => {
               justifyContent: "space-between",
             }}
           >
-            <Typography variant="body2" fontWeight="700">
-              Private
+            <Typography variant="body4" fontWeight="800">
+              All the projects
             </Typography>
             <IconButton onClick={addBoard}>
               <AddBoxOutlinedIcon fontSize="small" />

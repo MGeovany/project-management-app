@@ -31,6 +31,7 @@ const Home = () => {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
+        paddingTop: "90px",
       }}
     >
       <LoadingButton
@@ -39,7 +40,7 @@ const Home = () => {
         onClick={createBoard}
         loading={loading}
       >
-        Click here to create your first board
+        Click here to create your board
       </LoadingButton>
     </Box>
   );
