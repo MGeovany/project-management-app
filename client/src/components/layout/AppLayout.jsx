@@ -12,7 +12,6 @@ const AppLayout = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const location = useLocation();
-  console.log(location.pathname);
 
   const [loading, setLoading] = useState(true);
 
