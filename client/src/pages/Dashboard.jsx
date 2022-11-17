@@ -5,7 +5,6 @@ import { useSelector } from "react-redux";
 
 export const Dashboard = () => {
   const boards = useSelector((state) => state.board.value);
-  console.log(boards);
 
   return (
     <Box
