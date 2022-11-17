@@ -1,45 +1,63 @@
 import React from "react";
-import mockData from "../components/common/mockData";
-import { Box, Button, Divider, Typography } from '@mui/material'
-import '../css/DashboardStyles.css'
+import { Box, Button, Divider, Typography } from "@mui/material";
+import "../css/DashboardStyles.css";
+import { useSelector } from "react-redux";
 
 export const Dashboard = () => {
+  const boards = useSelector((state) => state.board.value);
+  console.log(boards);
+
   return (
-    <Box sx={{
-      paddingTop:10
-    }}>
-      <Typography align="center" variant="h2" component='h2'>
-        This is the Dashboard
+    <Box
+      sx={{
+        paddingTop: 10,
+      }}
+    >
+      <Typography
+        align="left"
+        variant="h5"
+        component="h2"
+        sx={{ paddingBottom: 5 }}
+      >
+        Dashboard
       </Typography>
-      
-      <Box sx={{ 
-              display: 'flex',
-              flexDirection: 'row',
-              flexWrap: 'wrap',
-              justifyContent:'space-around'
-              }}>
-      {
-        mockData && mockData.map(data => {
-          return(
-            <Box className="ItemBox">
-              <Typography variant='h4' component='h3' key={data.id}>
-                {data.title}
-              </Typography>
-              <Divider/>
-              <Box sx={{
-                display:'flex',
-                flexDirection:'column',
-                alignItems:'center'
-              }}>
-                <Typography variant="h6" component='h6'>
-                  Number of Tasks: {data.tasks.length}
+
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+          flexWrap: "wrap",
+          justifyContent: "space-around",
+        }}
+      >
+        {boards &&
+          boards.map((data, i) => {
+            return (
+              <Box className="ItemBox" key={i}>
+                <Typography
+                  variant="h5"
+                  component="h3"
+                  key={data.id}
+                  sx={{ textAlign: "center" }}
+                >
+                  {data.icon + " " + data.title}
                 </Typography>
-                <Button>View More</Button>
+                <Divider />
+                <Box
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                  }}
+                >
+                  <Typography variant="body2" sx={{ paddingTop: 2 }}>
+                    Number of Tasks: {i > 0 ? 1 : 5}
+                  </Typography>
+                  <Button>View More</Button>
+                </Box>
               </Box>
-            </Box>
-          )
-        })
-      }
+            );
+          })}
       </Box>
     </Box>
   );
