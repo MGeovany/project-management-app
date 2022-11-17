@@ -17,6 +17,7 @@ import { Projects } from "./pages/Projects";
 import { Profile } from "./pages/Profile";
 import { Blog } from "./pages/Blog";
 import { Logout } from "./pages/Logout";
+import NotFound from "./pages/NotFound";
 
 function App() {
   const theme = createTheme({
@@ -41,6 +42,7 @@ function App() {
             <Route path="profile" element={<Profile />} />
             <Route path="blog" element={<Blog />} />
             <Route path="logout" element={<Logout />} />
+            <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>
       </BrowserRouter>

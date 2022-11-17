@@ -29,10 +29,10 @@ export const AccountProfile = ({ user }) => {
             }}
           />
           <Typography color="textPrimary" gutterBottom variant="h5">
-            {user.jobTitle}
+            {user.username}
           </Typography>
           <Typography color="textSecondary" variant="body2">
-            {`${user.city} ${user.country}`}
+            Soft. Engineer
           </Typography>
           <Typography color="textSecondary" variant="body2">
             {user.timezone}

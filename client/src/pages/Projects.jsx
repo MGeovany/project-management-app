@@ -1,10 +1,21 @@
+import { Box, Typography } from "@mui/material";
 import React from "react";
 
 export const Projects = () => {
   return (
-    <div>
-      <p>1</p>
-      <p>2</p>
-    </div>
+    <Box
+      sx={{
+        paddingTop: 10,
+      }}
+    >
+      <Typography
+        align="left"
+        variant="h5"
+        component="h2"
+        sx={{ paddingBottom: 5 }}
+      >
+        Projects
+      </Typography>
+    </Box>
   );
 };

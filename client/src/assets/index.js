@@ -5,6 +5,7 @@ const assets = {
     favicon: require("./images/favicon.ico"),
     mainLogo: require("./images/main-logo.png"),
     projectFlow: require("./images/projectflow.png"),
+    notFound: require("./images/404.svg"),
   },
   colors: {
     secondary: "#292929",
