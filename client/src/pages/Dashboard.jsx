@@ -1,16 +1,21 @@
 import React from "react";
 import { Box, Button, Divider, Grid, Typography } from "@mui/material";
+
 import "../css/DashboardStyles.css";
 import { useSelector } from "react-redux";
+import ChartConversionRates from "../components/chart/ChartConversionRates";
 
 export const Dashboard = () => {
   const boards = useSelector((state) => state.board.value);
-  const boardCard = boards?.slice(4);
-  console.log(boardCard);
+
   return (
     <Box
       sx={{
         paddingTop: 10,
+        display: "flex",
+        flexDirection: "column",
+        flexWrap: "wrap",
+        justifyContent: "space-around",
       }}
     >
       <Typography
@@ -58,6 +63,26 @@ export const Dashboard = () => {
             );
           })}
       </Grid>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+          flexWrap: "wrap",
+          justifyContent: "space-between",
+        }}
+      >
+        <Box className="SideGraphBox" width={"100%"}>
+          <ChartConversionRates
+            title="Board Activity"
+            subheader="Test Project"
+            chartData={[
+              { label: "To Do", value: 20 },
+              { label: "In Progress", value: 30 },
+              { label: "Completed", value: 37 },
+            ]}
+          />
+        </Box>
+      </Box>
     </Box>
   );
 };
