@@ -5,3 +5,18 @@
   min-width: 350px;
   margin: 0.7rem 0.3rem;
 }
+
+.GraphBox{
+  background-color: rgb(39, 39, 39);
+  padding: 30px;
+  border-radius: 15px;
+  max-width: 800px;
+  margin: 0.7rem 0.3rem;
+}
+
+.SideGraphBox{
+  background-color: rgb(39, 39, 39);
+  padding: 30px;
+  border-radius: 15px;
+  margin: 0.7rem 0.3rem;
+}
