@@ -1,91 +1,109 @@
-import {
-  TextInput,
-  PasswordInput,
-  Paper,
-  Title,
-  Text,
-  Container,
-  Group,
-  Button,
-} from "@mantine/core";
-import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
-import { useForm } from "@mantine/form";
+import { Box, Button, TextField } from '@mui/material'
+import { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import LoadingButton from '@mui/lab/LoadingButton'
+import authApi from '../api/authApi'
 
-const BASE_URL = "http://localhost:4000/project_flow/authenticate";
+const Login = () => {
+  const navigate = useNavigate()
+  const [loading, setLoading] = useState(false)
+  const [usernameErrText, setUsernameErrText] = useState('')
+  const [passwordErrText, setPasswordErrText] = useState('')
 
-export const Login = () => {
-  const navigate = useNavigate();
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    setUsernameErrText('')
+    setPasswordErrText('')
 
-  const form = useForm({
-    initialValues: {
-      username: "",
-      password: "",
-    },
-  });
+    const data = new FormData(e.target)
+    const username = data.get('username').trim()
+    const password = data.get('password').trim()
 
-  const validateAuth = () => {
-    return form.onSubmit((values) => {
-      var config = {
-        method: "post",
-        url: BASE_URL,
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-        data: values,
-      };
-      axios(config)
-        .then(function (response) {
-          navigate("/");
-          console.log(JSON.stringify(response.data));
-        })
-        .catch(function (error) {
-          navigate("/login");
-          console.log(error);
-        });
-    });
-  };
+    let err = false
+
+    if (username === '') {
+      err = true
+      setUsernameErrText('Please fill this field')
+    }
+    if (password === '') {
+      err = true
+      setPasswordErrText('Please fill this field')
+    }
+
+    if (err) return
+
+    setLoading(true)
+
+    try {
+      const res = await authApi.login({ username, password })
+      setLoading(false)
+      localStorage.setItem('token', res.token)
+      navigate('/')
+    } catch (err) {
+      const errors = err.data.errors
+      errors.forEach(e => {
+        if (e.param === 'username') {
+          setUsernameErrText(e.msg)
+        }
+        if (e.param === 'password') {
+          setPasswordErrText(e.msg)
+        }
+      })
+      setLoading(false)
+    }
+  }
 
   return (
-    <Container size={500} my={120}>
-      <Title
-        align="center"
-        sx={(theme) => ({
-          fontFamily: `Greycliff CF, ${theme.fontFamily}`,
-          fontWeight: 900,
-        })}
+    <>
+      <Box
+        component='form'
+        sx={{ mt: 1 }}
+        onSubmit={handleSubmit}
+        noValidate
       >
-        Bienvenido a Project Flow 🚀
-      </Title>
-      <Text color="dimmed" size="sm" align="center" mt={5}>
-        Aun no tienes una cuenta? <Link to="/register">Crear cuenta</Link>
-      </Text>
+        <TextField
+          margin='normal'
+          required
+          fullWidth
+          id='username'
+          label='Username'
+          name='username'
+          disabled={loading}
+          error={usernameErrText !== ''}
+          helperText={usernameErrText}
+        />
+        <TextField
+          margin='normal'
+          required
+          fullWidth
+          id='password'
+          label='Password'
+          name='password'
+          type='password'
+          disabled={loading}
+          error={passwordErrText !== ''}
+          helperText={passwordErrText}
+        />
+        <LoadingButton
+          sx={{ mt: 3, mb: 2 }}
+          variant='outlined'
+          fullWidth
+          color='success'
+          type='submit'
+          loading={loading}
+        >
+          Login
+        </LoadingButton>
+      </Box>
+      <Button
+        component={Link}
+        to='/signup'
+        sx={{ textTransform: 'none' }}
+      >
+        Don't have an account? Signup
+      </Button>
+    </>
+  )
+}
 
-      <Paper withBorder shadow="md" p={30} mt={30} radius="md">
-        <form onSubmit={validateAuth()}>
-          <TextInput
-            py={10}
-            label="Correo:"
-            placeholder="correo@gmail.com"
-            required
-            {...form.getInputProps("username")}
-          />
-          <PasswordInput
-            py={10}
-            label="Contrasena:"
-            placeholder="Tu Contrasena"
-            required
-            mt="md"
-            {...form.getInputProps("password")}
-          />
-          <Group pt={10} position="apart" mt="md">
-            <Link to="/reset">Olvide mi contraseña</Link>
-          </Group>
-          <Button fullWidth mt="xl" type="submit">
-            Iniciar Sesion
-          </Button>
-        </form>
-      </Paper>
-    </Container>
-  );
-};
+export default Login
