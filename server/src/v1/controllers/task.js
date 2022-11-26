@@ -1,5 +1,6 @@
-const Task = require('../models/task')
-const Section = require('../models/section')
+const Task = require('../models/task');
+const Section = require('../models/section');
+const Board = require('./board');
 
 exports.create = async (req, res) => {
   const { sectionId } = req.body
@@ -19,10 +20,10 @@ exports.create = async (req, res) => {
 
 exports.update = async (req, res) => {
   const { taskId } = req.params
+  const newUpdate=req.body
   try {
     const task = await Task.findByIdAndUpdate(
-      taskId,
-      { $set: req.body }
+      taskId,newUpdate 
     )
     res.status(200).json(task)
   } catch (err) {
@@ -86,4 +87,13 @@ exports.updatePosition = async (req, res) => {
   } catch (err) {
     res.status(500).json(err)
   }
-}
+};
+
+exports.getTaskSectionBoard = async (req,res)=>{
+  try {
+    const board = await Board.findById({boardId: req.user._id })
+    res.status(200).json(board)
+  } catch (error) {
+    res.status(500).json(err)
+  }
+};
