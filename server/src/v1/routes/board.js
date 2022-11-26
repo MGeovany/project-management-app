@@ -15,6 +15,11 @@ router.get(
   tokenHandler.verifyToken,
   boardController.getAll
 )
+router.get(
+  '/users',
+  tokenHandler.verifyToken,
+  boardController.userAll
+)
 
 router.put(
   '/',

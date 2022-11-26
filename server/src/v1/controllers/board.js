@@ -181,3 +181,12 @@ exports.delete = async (req, res) => {
     res.status(500).json(err)
   }
 }
+exports.userAll = async (req,res)=>{
+  try {
+    const users = await User.find().sort('-position')
+    res.status(200).json(users)
+  } catch (err) {
+    res.status(500).json(err)
+  }
+
+}
