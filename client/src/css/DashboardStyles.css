@@ -20,3 +20,61 @@
   border-radius: 15px;
   margin: 0.7rem 0.3rem;
 }
+
+.CalendarDatePicker{
+  font-family: sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  background-color: rgb(39, 39, 39);
+  color: rgb(144, 202, 231);
+  border: none;
+  width: 12vh;
+  text-align: center;
+  position: relative;
+  z-index: '999';
+}
+
+.CalendarDatePicker:hover{
+  cursor: pointer;
+  background-color: rgb(47, 52, 56);
+  border-radius: 2px;
+}
+
+.CalendarDatePicker::-webkit-input-placeholder { /* Safari, Chrome and Opera */
+  color: rgb(144, 202, 231);
+}
+
+.CalendarDatePicker:-moz-placeholder { /* Firefox 18- */
+  color: rgb(144, 202, 231);
+}
+
+.CalendarDatePicker::-moz-placeholder { /* Firefox 19+ */
+  color: rgb(144, 202, 231);
+}
+
+.CalendarDatePicker:-ms-input-placeholder { /* IE 10+ */
+  color: rgb(144, 202, 231)
+}
+
+.CalendarDatePicker::-ms-input-placeholder { /* Edge */
+  color: rgb(144, 202, 231);
+}
+
+.CalendarDatePicker:placeholder-shown { /* Standard one last! */
+  color: rgb(144, 202, 231);
+}
+
+
+.CalendarItems{
+  background-color: whitesmoke;
+  border-radius: 5px;
+}
+
+.CalendarItems div{
+  color: black;
+}
+
+.CalendarItems span>button {
+  color: black;
+  z-index: 1;
+}
