@@ -16,6 +16,7 @@ import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import taskApi from "../../api/taskApi";
 
 import "../../css/custom-editor.css";
+import UserFilter from "./UserFilter";
 
 const modalStyle = {
   outline: "none",
@@ -136,12 +137,31 @@ const TaskModal = (props) => {
               <DeleteOutlinedIcon />
             </IconButton>
           </Box>
+
+          <Box
+            sx={{
+              width: "100%",
+              padding: "1rem 5rem",
+            }}
+          >
+            <Typography variant="body2" fontWeight="700">
+              Participants:
+            </Typography>
+            <Box
+              sx={{
+                width: "100%",
+                padding: "2rem 0rem",
+              }}
+            >
+              <UserFilter boardId={boardId} taskId={task?.id} />
+            </Box>
+          </Box>
           <Box
             sx={{
               display: "flex",
               height: "100%",
               flexDirection: "column",
-              padding: "2rem 5rem 5rem",
+              padding: ".12rem 5rem 5rem",
             }}
           >
             <TextField
