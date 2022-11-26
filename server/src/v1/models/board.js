@@ -6,15 +6,16 @@ const boardSchema = new Schema({
   user: {
     type: Schema.Types.ObjectId,
     ref: 'User',
-    required: true
+    required: true,
+    autopopulate:true
   },
   icon: {
     type: String,
-    default: '📃'
+    default: ''
   },
   title: {
     type: String,
-    default: 'Untitled'
+    default: ''
   },
   description: {
     type: String,
@@ -31,8 +32,9 @@ const boardSchema = new Schema({
   },
   favouritePosition: {
     type: Number,
-    default: 0
+    default: 0,
+    max:100
   }
 }, schemaOptions)
-
+boardSchema.plugin(require('mongoose-autopopulate'));
 module.exports = mongoose.model('Board', boardSchema)

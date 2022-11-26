@@ -6,12 +6,14 @@ const sectionSchema = new Schema({
   board: {
     type: Schema.Types.ObjectId,
     ref: 'Board',
-    required: true
+    required: true,
+    autopopulate:true
   },
   title: {
     type: String,
     default: ''
   }
 }, schemaOptions)
+sectionSchema.plugin(require('mongoose-autopopulate'));
 
 module.exports = mongoose.model('Section', sectionSchema)

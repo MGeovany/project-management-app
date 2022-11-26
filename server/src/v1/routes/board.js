@@ -15,6 +15,11 @@ router.get(
   tokenHandler.verifyToken,
   boardController.getAll
 )
+router.get(
+  '/users',
+  tokenHandler.verifyToken,
+  boardController.userAll
+)
 
 router.put(
   '/',
@@ -68,6 +73,12 @@ router.delete(
   validation.validate,
   tokenHandler.verifyToken,
   boardController.delete
+)
+
+router.post(
+  validation.validate,
+  tokenHandler.verifyToken,
+  boardController.addParticipant
 )
 
 
