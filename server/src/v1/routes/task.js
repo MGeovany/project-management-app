@@ -67,4 +67,15 @@ router.put(
   taskController.update
 )
 
+router.get(
+  '/todos/:boardId',
+  param('boardId').custom(value => {
+    if (!validation.isObjectId(value)) {
+      return Promise.reject('invalid board id')
+    } else return Promise.resolve()
+  }),
+  taskController.getTaskSectionBoard
+)
+
+
 module.exports = router

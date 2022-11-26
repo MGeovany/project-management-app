@@ -1,13 +1,14 @@
 const Board = require('../models/board')
 const Section = require('../models/section')
 const Task = require('../models/task')
+const User=require('../models/user')
 
 exports.create = async (req, res) => {
   try {
     const boardsCount = await Board.find().count()
     const board = await Board.create({
       user: req.user._id,
-      position: boardsCount > 0 ? boardsCount : 0
+      position: boardsCount > 0 ? boardsCount : 0,
     })
     res.status(201).json(board)
   } catch (err) {
@@ -37,6 +38,19 @@ exports.updatePosition = async (req, res) => {
     res.status(200).json('updated')
   } catch (err) {
     res.status(500).json(err)
+  }
+}
+
+exports.addParticipant=async(req,res)=>{
+    const { boardId } = req.params
+  try {
+    const board = await Board.findByIdAndUpdate(
+      boardId,
+      { $set: req.body }
+    )
+    res.status(200).json(board)
+  } catch (err) {
+    res.status(500).json(board)
   }
 }
 

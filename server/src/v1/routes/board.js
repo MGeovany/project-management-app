@@ -70,5 +70,11 @@ router.delete(
   boardController.delete
 )
 
+router.post(
+  validation.validate,
+  tokenHandler.verifyToken,
+  boardController.addParticipant
+)
+
 
 module.exports = router
