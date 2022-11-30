@@ -141,7 +141,8 @@ export default function UserFilter({ boardId, taskId }) {
         });
         setUsers(res);
       } catch (err) {
-        alert(err);
+        // alert(err);
+        console.log(err);
       }
     };
     getBoard();

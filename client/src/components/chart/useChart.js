@@ -1,12 +1,12 @@
-import merge from 'lodash/merge';
-import { useTheme, alpha } from '@mui/material/styles';
+import merge from "lodash/merge";
+import { useTheme, alpha } from "@mui/material/styles";
 
-export  function useChart(options) {
+export function useChart(options) {
   const theme = useTheme();
 
   const LABEL_TOTAL = {
     show: true,
-    label: 'Total',
+    label: "Total",
     color: theme.palette.text.secondary,
     fontSize: theme.typography.subtitle2.fontSize,
     fontWeight: theme.typography.subtitle2.fontWeight,
@@ -48,13 +48,13 @@ export  function useChart(options) {
     states: {
       hover: {
         filter: {
-          type: 'lighten',
+          type: "lighten",
           value: 0.04,
         },
       },
       active: {
         filter: {
-          type: 'darken',
+          type: "darken",
           value: 0.88,
         },
       },
@@ -64,7 +64,7 @@ export  function useChart(options) {
     fill: {
       opacity: 1,
       gradient: {
-        type: 'vertical',
+        type: "vertical",
         shadeIntensity: 0,
         opacityFrom: 0.4,
         opacityTo: 0,
@@ -78,8 +78,8 @@ export  function useChart(options) {
     // Stroke
     stroke: {
       width: 3,
-      curve: 'smooth',
-      lineCap: 'round',
+      curve: "smooth",
+      lineCap: "round",
     },
 
     // Grid
@@ -111,8 +111,8 @@ export  function useChart(options) {
     legend: {
       show: true,
       fontSize: String(13),
-      position: 'top',
-      horizontalAlign: 'right',
+      position: "top",
+      horizontalAlign: "right",
       markers: {
         radius: 12,
       },
@@ -128,7 +128,7 @@ export  function useChart(options) {
       // Bar
       bar: {
         borderRadius: 4,
-        columnWidth: '28%',
+        columnWidth: "28%",
       },
 
       // Pie + Donut
@@ -145,7 +145,7 @@ export  function useChart(options) {
       // Radialbar
       radialBar: {
         track: {
-          strokeWidth: '100%',
+          strokeWidth: "100%",
           background: alpha(theme.palette.grey[500], 0.16),
         },
         dataLabels: {
@@ -157,7 +157,7 @@ export  function useChart(options) {
       // Radar
       radar: {
         polygons: {
-          fill: { colors: ['transparent'] },
+          fill: { colors: ["transparent"] },
           strokeColors: theme.palette.divider,
           connectorColors: theme.palette.divider,
         },
@@ -180,14 +180,14 @@ export  function useChart(options) {
         // sm
         breakpoint: theme.breakpoints.values.sm,
         options: {
-          plotOptions: { bar: { columnWidth: '40%' } },
+          plotOptions: { bar: { columnWidth: "40%" } },
         },
       },
       {
         // md
         breakpoint: theme.breakpoints.values.md,
         options: {
-          plotOptions: { bar: { columnWidth: '32%' } },
+          plotOptions: { bar: { columnWidth: "32%" } },
         },
       },
     ],

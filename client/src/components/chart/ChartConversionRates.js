@@ -1,11 +1,11 @@
-import PropTypes from 'prop-types';
-import ReactApexChart from 'react-apexcharts';
+import PropTypes from "prop-types";
+import ReactApexChart from "react-apexcharts";
 // @mui
-import { Box, Card, CardHeader } from '@mui/material';
+import { Box, Card, CardHeader } from "@mui/material";
 // utils
-import { fNumber } from './formatNumber';
+import { fNumber } from "./formatNumber";
 // components
-import { useChart } from './useChart';
+import { useChart } from "./useChart";
 
 // ----------------------------------------------------------------------
 
@@ -15,7 +15,12 @@ ChartConversionRates.propTypes = {
   chartData: PropTypes.array.isRequired,
 };
 
-export default function ChartConversionRates({ title, subheader, chartData, ...other }) {
+export default function ChartConversionRates({
+  title,
+  subheader,
+  chartData,
+  ...other
+}) {
   const chartLabels = chartData.map((i) => i.label);
 
   const chartSeries = chartData.map((i) => i.value);
@@ -26,12 +31,12 @@ export default function ChartConversionRates({ title, subheader, chartData, ...o
       y: {
         formatter: (seriesName) => fNumber(seriesName),
         title: {
-          formatter: () => '',
+          formatter: () => "",
         },
       },
     },
     plotOptions: {
-      bar: { horizontal: true, barHeight: '28%', borderRadius: 2 },
+      bar: { horizontal: true, barHeight: "28%", borderRadius: 2 },
     },
     xaxis: {
       categories: chartLabels,
@@ -43,7 +48,12 @@ export default function ChartConversionRates({ title, subheader, chartData, ...o
       <CardHeader title={title} subheader={subheader} />
 
       <Box sx={{ mx: 3 }} dir="ltr">
-        <ReactApexChart type="bar" series={[{ data: chartSeries }]} options={chartOptions} height={364} />
+        <ReactApexChart
+          type="bar"
+          series={[{ data: chartSeries }]}
+          options={chartOptions}
+          height={364}
+        />
       </Box>
     </Card>
   );

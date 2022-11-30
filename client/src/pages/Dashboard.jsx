@@ -83,16 +83,16 @@ export const Dashboard = () => {
             ]}
           />
         </Box>
-    <Typography
-        align="left"
-        variant="h4"
-        component="h2"
-        sx={{ paddingBottom: 5 }}
-      >
-        Calendar
-      </Typography>
-        <Box width={"100%"} className='SideGraphBox'>
-          <CalendarItem/>
+        <Typography
+          align="left"
+          variant="h4"
+          component="h2"
+          sx={{ paddingBottom: 5 }}
+        >
+          Calendar
+        </Typography>
+        <Box width={"100%"} className="SideGraphBox">
+          <CalendarItem />
         </Box>
       </Box>
     </Box>
