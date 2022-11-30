@@ -1,4 +1,4 @@
-import axiosClient from "./axiosClient";
+import axiosClient from "./axiosClient"
 
 const boardApi = {
   create: () => axiosClient.post("boards"),
@@ -8,8 +8,7 @@ const boardApi = {
   delete: (id) => axiosClient.delete(`boards/${id}`),
   update: (id, params) => axiosClient.put(`boards/${id}`, params),
   getFavourites: () => axiosClient.get("boards/favourites"),
-  updateFavouritePosition: (params) =>
-    axiosClient.put("boards/favourites", params),
-};
+  updateFavouritePosition: (params) => axiosClient.put("boards/favourites", params)
+}
 
-export default boardApi;
+export default boardApi
