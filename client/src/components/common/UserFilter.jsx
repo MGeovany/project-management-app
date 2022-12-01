@@ -101,11 +101,11 @@ const Button = styled(ButtonBase)(({ theme }) => ({
   }
 }))
 
-export default function UserFilter({ boardId, taskId }) {
+export default function UserFilter({ boardId, taskId, participants, onUpdateParticipants }) {
   const [anchorEl, setAnchorEl] = React.useState(null)
   const [users, setUsers] = React.useState([])
-  const [value, setValue] = React.useState([])
-  const [pendingValue, setPendingValue] = React.useState([])
+  const [value, setValue] = React.useState(participants)
+  const [pendingValue, setPendingValue] = React.useState(participants)
   const theme = useTheme()
 
   useEffect(() => {
@@ -121,18 +121,7 @@ export default function UserFilter({ boardId, taskId }) {
   }, [])
 
   useEffect(() => {
-    const getBoard = async () => {
-      try {
-        const res = await participantsApi.update(boardId, taskId, {
-          content: value
-        })
-        setUsers(res)
-      } catch (err) {
-        // alert(err);
-        console.log(err)
-      }
-    }
-    getBoard()
+    onUpdateParticipants(value)
   }, [value])
 
   const handleClick = (event) => {
@@ -150,7 +139,8 @@ export default function UserFilter({ boardId, taskId }) {
 
   const open = Boolean(anchorEl)
   const id = open ? "github-label" : undefined
-
+  console.log("pendingValue ss", pendingValue)
+  console.log("value sss", value)
   return (
     <React.Fragment>
       <Box sx={{ width: 221, fontSize: 14 }}>

@@ -68,13 +68,15 @@ router.put(
 )
 
 router.get(
-  '/todos/:boardId',
-  param('boardId').custom(value => {
+  '/:taskId',
+  param('taskId').custom(value => {
     if (!validation.isObjectId(value)) {
       return Promise.reject('invalid board id')
     } else return Promise.resolve()
   }),
-  taskController.getTaskSectionBoard
+  validation.validate,
+  tokenHandler.verifyToken,
+  taskController.allUsersTask
 )
 
 

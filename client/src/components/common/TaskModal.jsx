@@ -32,6 +32,7 @@ const TaskModal = (props) => {
   const [task, setTask] = useState(props.task)
   const [title, setTitle] = useState("")
   const [content, setContent] = useState("")
+  const [participants, setParticipants] = useState([""])
   const editorWrapperRef = useRef()
 
   useEffect(() => {
@@ -86,6 +87,22 @@ const TaskModal = (props) => {
     props.onUpdate(task)
   }
 
+  const updateParticipants = async (newParticipantList) => {
+    clearTimeout(timer)
+
+    timer = setTimeout(async () => {
+      try {
+        await taskApi.updateParticipant(boardId, task.id, { participant: newParticipantList })
+      } catch (err) {
+        alert(err)
+      }
+    }, timeout)
+
+    task.participants = newParticipantList
+    setParticipants(participants)
+    props.onUpdate(task)
+  }
+
   const updateContent = async (event, editor) => {
     clearTimeout(timer)
     const data = editor.getData()
@@ -105,6 +122,7 @@ const TaskModal = (props) => {
     }
   }
 
+  console.log(task, "imtask")
   return (
     <Modal
       open={task !== undefined}
@@ -139,7 +157,12 @@ const TaskModal = (props) => {
                 width: "100%",
                 padding: "2rem 0rem"
               }}>
-              <UserFilter boardId={boardId} taskId={task?.id} />
+              <UserFilter
+                boardId={boardId}
+                taskId={task?.id}
+                participants={task?.participants}
+                onUpdateParticipants={updateParticipants}
+              />
             </Box>
           </Box>
           <Box
