@@ -1,9 +1,9 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from "@reduxjs/toolkit"
 
 const initialState = { value: [] }
 
 export const favouriteSlice = createSlice({
-  name: 'favourites',
+  name: "favourites",
   initialState,
   reducers: {
     setFavouriteList: (state, action) => {

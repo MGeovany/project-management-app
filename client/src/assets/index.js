@@ -5,11 +5,11 @@ const assets = {
     favicon: require("./images/favicon.ico"),
     mainLogo: require("./images/main-logo.png"),
     projectFlow: require("./images/projectflow.png"),
-    notFound: require("./images/404.svg"),
+    notFound: require("./images/404.svg")
   },
   colors: {
-    secondary: "#292929",
-  },
-};
+    secondary: "#292929"
+  }
+}
 
-export default assets;
+export default assets

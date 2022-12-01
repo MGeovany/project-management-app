@@ -1,36 +1,33 @@
-import { Box, Button, Container } from "@mui/material";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import { useNavigate } from "react-router-dom";
+import { Box, Button, Container } from "@mui/material"
+import ArrowBackIcon from "@mui/icons-material/ArrowBack"
+import { useNavigate } from "react-router-dom"
 const NotFound = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   const handleSubmit = () => {
-    navigate("/boards");
-  };
+    navigate("/boards")
+  }
   return (
     <>
       <Box
         sx={{
-          paddingTop: 10,
-        }}
-      >
+          paddingTop: 10
+        }}>
         <Box
           component="main"
           sx={{
             alignItems: "center",
             display: "flex",
             flexGrow: 1,
-            minHeight: "100%",
-          }}
-        >
+            minHeight: "100%"
+          }}>
           <Container maxWidth="md">
             <Box
               sx={{
                 alignItems: "center",
                 display: "flex",
-                flexDirection: "column",
-              }}
-            >
+                flexDirection: "column"
+              }}>
               <Box sx={{ textAlign: "center" }}>
                 <NotFoundSVG />
               </Box>
@@ -39,8 +36,7 @@ const NotFound = () => {
                 startIcon={<ArrowBackIcon fontSize="small" />}
                 sx={{ mt: 3 }}
                 variant="contained"
-                onClick={handleSubmit}
-              >
+                onClick={handleSubmit}>
                 Go back to dashboard
               </Button>
             </Box>
@@ -48,17 +44,11 @@ const NotFound = () => {
         </Box>
       </Box>
     </>
-  );
-};
+  )
+}
 
 export const NotFoundSVG = (props) => (
-  <svg
-    data-name="Layer 1"
-    xmlns="http://www.w3.org/2000/svg"
-    width={1074.392}
-    height={584.231}
-    {...props}
-  >
+  <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" width={1074.392} height={584.231} {...props}>
     <title>{"page not found"}</title>
     <ellipse cx={540.643} cy={549.309} rx={527.5} ry={34.922} fill="#f2f2f2" />
     <path
@@ -127,10 +117,7 @@ export const NotFoundSVG = (props) => (
       d="M532.5 5.35c-.158 0-.315.006-.472.011a12.898 12.898 0 0 1 0 25.779c.157.005.314.012.472.012a12.901 12.901 0 1 0 0-25.803ZM471.141 5.35c.158 0 .315.006.472.011a12.898 12.898 0 0 0 0 25.779c-.157.005-.314.012-.472.012a12.901 12.901 0 0 1 0-25.803ZM513.6 40.275a12.528 12.528 0 0 1-7.535 2.524h-15.096a12.528 12.528 0 0 1-7.536-2.524Z"
       opacity={0.1}
     />
-    <path
-      d="M611.086 133.756s3.252 9.372 6.229 6.876l-2.373-12.25Z"
-      fill="#fbbebe"
-    />
+    <path d="M611.086 133.756s3.252 9.372 6.229 6.876l-2.373-12.25Z" fill="#fbbebe" />
     <path
       d="M1006.864 419.55a20.813 20.813 0 1 0 2.771-39.916l.521 10.713-5.068-9.18a20.734 20.734 0 0 0-10.683 11.722 20.408 20.408 0 0 0-1.198 5.63 20.809 20.809 0 0 0 13.657 21.03Z"
       fill="#57b894"
@@ -229,33 +216,9 @@ export const NotFoundSVG = (props) => (
       d="M560.446 384.615c0 9.94-13.88 18-31 18s-31-8.06-31-18c0-8.61 10.41-15.81 24.32-17.57a50.104 50.104 0 0 1 6.68-.43 50.699 50.699 0 0 1 11.13 1.2c11.62 2.59 19.87 9.14 19.87 16.8Z"
       fill="#2f2e41"
     />
-    <ellipse
-      cx={484.946}
-      cy={314.115}
-      rx={17}
-      ry={22}
-      fill="none"
-      stroke="#3f3d56"
-      strokeMiterlimit={10}
-    />
-    <ellipse
-      cx={577.446}
-      cy={314.615}
-      rx={17}
-      ry={22}
-      fill="none"
-      stroke="#3f3d56"
-      strokeMiterlimit={10}
-    />
-    <ellipse
-      cx={533.446}
-      cy={379.615}
-      rx={31}
-      ry={18}
-      fill="none"
-      stroke="#3f3d56"
-      strokeMiterlimit={10}
-    />
+    <ellipse cx={484.946} cy={314.115} rx={17} ry={22} fill="none" stroke="#3f3d56" strokeMiterlimit={10} />
+    <ellipse cx={577.446} cy={314.615} rx={17} ry={22} fill="none" stroke="#3f3d56" strokeMiterlimit={10} />
+    <ellipse cx={533.446} cy={379.615} rx={31} ry={18} fill="none" stroke="#3f3d56" strokeMiterlimit={10} />
     <path
       d="M540.946 369.316a4.937 4.937 0 0 1-1.32 3.392 4.339 4.339 0 0 1-3.18 1.407h-10a4.664 4.664 0 0 1-4.5-4.8 4.905 4.905 0 0 1 .82-2.74 47.02 47.02 0 0 1 6.68-.46 47.665 47.665 0 0 1 11.13 1.28 5.067 5.067 0 0 1 .37 1.92Z"
       fill="#fff"
@@ -265,6 +228,6 @@ export const NotFoundSVG = (props) => (
     <circle cx={582.946} cy={355.115} r={5} fill="#6c63ff" opacity={0.3} />
     <circle cx={460.946} cy={355.115} r={5} fill="#6c63ff" opacity={0.3} />
   </svg>
-);
+)
 
-export default NotFound;
+export default NotFound

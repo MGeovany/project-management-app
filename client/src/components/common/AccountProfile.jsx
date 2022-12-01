@@ -1,13 +1,4 @@
-import {
-  Avatar,
-  Box,
-  Button,
-  Card,
-  CardActions,
-  CardContent,
-  Divider,
-  Typography,
-} from "@mui/material";
+import { Avatar, Box, Button, Card, CardActions, CardContent, Divider, Typography } from "@mui/material"
 
 export const AccountProfile = ({ user }) => {
   return (
@@ -17,15 +8,14 @@ export const AccountProfile = ({ user }) => {
           sx={{
             alignItems: "center",
             display: "flex",
-            flexDirection: "column",
-          }}
-        >
+            flexDirection: "column"
+          }}>
           <Avatar
             src={user.username}
             sx={{
               height: 64,
               mb: 2,
-              width: 64,
+              width: 64
             }}
           />
           <Typography color="textPrimary" gutterBottom variant="h5">
@@ -46,5 +36,5 @@ export const AccountProfile = ({ user }) => {
         </Button>
       </CardActions>
     </Card>
-  );
-};
+  )
+}

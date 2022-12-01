@@ -1,33 +1,33 @@
-import { Box, Button, TextField } from '@mui/material'
-import { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import LoadingButton from '@mui/lab/LoadingButton'
-import authApi from '../api/authApi'
+import { Box, Button, TextField } from "@mui/material"
+import { useState } from "react"
+import { Link, useNavigate } from "react-router-dom"
+import LoadingButton from "@mui/lab/LoadingButton"
+import authApi from "../api/authApi"
 
 const Login = () => {
   const navigate = useNavigate()
   const [loading, setLoading] = useState(false)
-  const [usernameErrText, setUsernameErrText] = useState('')
-  const [passwordErrText, setPasswordErrText] = useState('')
+  const [usernameErrText, setUsernameErrText] = useState("")
+  const [passwordErrText, setPasswordErrText] = useState("")
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    setUsernameErrText('')
-    setPasswordErrText('')
+    setUsernameErrText("")
+    setPasswordErrText("")
 
     const data = new FormData(e.target)
-    const username = data.get('username').trim()
-    const password = data.get('password').trim()
+    const username = data.get("username").trim()
+    const password = data.get("password").trim()
 
     let err = false
 
-    if (username === '') {
+    if (username === "") {
       err = true
-      setUsernameErrText('Please fill this field')
+      setUsernameErrText("Please fill this field")
     }
-    if (password === '') {
+    if (password === "") {
       err = true
-      setPasswordErrText('Please fill this field')
+      setPasswordErrText("Please fill this field")
     }
 
     if (err) return
@@ -37,15 +37,15 @@ const Login = () => {
     try {
       const res = await authApi.login({ username, password })
       setLoading(false)
-      localStorage.setItem('token', res.token)
-      navigate('/')
+      localStorage.setItem("token", res.token)
+      navigate("/")
     } catch (err) {
       const errors = err.data.errors
-      errors.forEach(e => {
-        if (e.param === 'username') {
+      errors.forEach((e) => {
+        if (e.param === "username") {
           setUsernameErrText(e.msg)
         }
-        if (e.param === 'password') {
+        if (e.param === "password") {
           setPasswordErrText(e.msg)
         }
       })
@@ -55,51 +55,35 @@ const Login = () => {
 
   return (
     <>
-      <Box
-        component='form'
-        sx={{ mt: 1 }}
-        onSubmit={handleSubmit}
-        noValidate
-      >
+      <Box component="form" sx={{ mt: 1 }} onSubmit={handleSubmit} noValidate>
         <TextField
-          margin='normal'
+          margin="normal"
           required
           fullWidth
-          id='username'
-          label='Username'
-          name='username'
+          id="username"
+          label="Username"
+          name="username"
           disabled={loading}
-          error={usernameErrText !== ''}
+          error={usernameErrText !== ""}
           helperText={usernameErrText}
         />
         <TextField
-          margin='normal'
+          margin="normal"
           required
           fullWidth
-          id='password'
-          label='Password'
-          name='password'
-          type='password'
+          id="password"
+          label="Password"
+          name="password"
+          type="password"
           disabled={loading}
-          error={passwordErrText !== ''}
+          error={passwordErrText !== ""}
           helperText={passwordErrText}
         />
-        <LoadingButton
-          sx={{ mt: 3, mb: 2 }}
-          variant='outlined'
-          fullWidth
-          color='success'
-          type='submit'
-          loading={loading}
-        >
+        <LoadingButton sx={{ mt: 3, mb: 2 }} variant="outlined" fullWidth color="success" type="submit" loading={loading}>
           Login
         </LoadingButton>
       </Box>
-      <Button
-        component={Link}
-        to='/signup'
-        sx={{ textTransform: 'none' }}
-      >
+      <Button component={Link} to="/signup" sx={{ textTransform: "none" }}>
         Don't have an account? Signup
       </Button>
     </>
