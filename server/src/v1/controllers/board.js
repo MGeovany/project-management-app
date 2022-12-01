@@ -1,5 +1,7 @@
+const board = require('../models/board')
 const Board = require('../models/board')
 const Section = require('../models/section')
+const task = require('../models/task')
 const Task = require('../models/task')
 const User=require('../models/user')
 
@@ -24,7 +26,16 @@ exports.getAll = async (req, res) => {
     res.status(500).json(err)
   }
 }
-
+exports.allTaskForBoard = async (req, res)=>{
+  const { boardId } = req.params
+  try {
+    const section = await Section.find({ board: boardId })
+    const task = await Task.find({section:section[0].id})
+    res.status(201).json(task)
+  } catch (err) {
+    res.status(500).json(err)
+  }
+}
 exports.updatePosition = async (req, res) => {
   const { boards } = req.body
   try {
@@ -53,6 +64,7 @@ exports.addParticipant=async(req,res)=>{
     res.status(500).json(board)
   }
 }
+
 
 exports.getOne = async (req, res) => {
   const { boardId } = req.params

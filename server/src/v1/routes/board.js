@@ -11,6 +11,16 @@ router.post(
 )
 
 router.get(
+  '/prueba/:boardId',
+  param('boardId').custom(value => {
+    if (!validation.isObjectId(value)) {
+      return Promise.reject('invalid id')
+    } else return Promise.resolve()
+  }),
+  boardController.allTaskForBoard
+)
+
+router.get(
   '/',
   tokenHandler.verifyToken,
   boardController.getAll
@@ -75,7 +85,7 @@ router.delete(
   boardController.delete
 )
 
-router.post(
+router.put(
   validation.validate,
   tokenHandler.verifyToken,
   boardController.addParticipant

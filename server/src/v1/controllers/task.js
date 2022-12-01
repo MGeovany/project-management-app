@@ -17,6 +17,15 @@ exports.create = async (req, res) => {
     res.status(500).json(err)
   }
 }
+exports.allUsersTask = async (req, res)=>{
+  const { taskId } = req.params
+  try {
+    const userTask = await Task.findById(taskId)
+    res.status(201).json(userTask)
+  } catch (err) {
+    res.status(500).json(err)
+  }
+}
 
 exports.update = async (req, res) => {
   const { taskId } = req.params
@@ -89,11 +98,11 @@ exports.updatePosition = async (req, res) => {
   }
 };
 
-exports.getTaskSectionBoard = async (req,res)=>{
+/* exports.getTaskSectionBoard = async (req,res)=>{
   try {
     const board = await Board.findById({boardId: req.user._id })
     res.status(200).json(board)
   } catch (error) {
     res.status(500).json(err)
   }
-};
+}; */
