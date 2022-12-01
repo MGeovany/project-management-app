@@ -1,62 +1,59 @@
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import Menu from "@mui/material/Menu";
-import MenuIcon from "@mui/icons-material/Menu";
-import Container from "@mui/material/Container";
-import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
-import Tooltip from "@mui/material/Tooltip";
-import MenuItem from "@mui/material/MenuItem";
-import AnalyticsIcon from "@mui/icons-material/Analytics";
-import { useNavigate, NavLink } from "react-router-dom";
-import React, { useEffect } from "react";
-import { useLocation } from "react-router-dom";
-import { useSelector } from "react-redux";
+import AppBar from "@mui/material/AppBar"
+import Box from "@mui/material/Box"
+import Toolbar from "@mui/material/Toolbar"
+import IconButton from "@mui/material/IconButton"
+import Typography from "@mui/material/Typography"
+import Menu from "@mui/material/Menu"
+import MenuIcon from "@mui/icons-material/Menu"
+import Container from "@mui/material/Container"
+import Avatar from "@mui/material/Avatar"
+import Button from "@mui/material/Button"
+import Tooltip from "@mui/material/Tooltip"
+import MenuItem from "@mui/material/MenuItem"
+import AnalyticsIcon from "@mui/icons-material/Analytics"
+import { useNavigate, NavLink } from "react-router-dom"
+import React, { useEffect } from "react"
+import { useLocation } from "react-router-dom"
+import { useSelector } from "react-redux"
 
-const pages = ["dashboard", "boards", "projects", "profile", "blog"];
-const settings = ["Profile", "Dashboard", "Logout"];
+const pages = ["dashboard", "boards", "projects", "profile", "blog"]
+const settings = ["Profile", "Dashboard", "Logout"]
 
 function ResponsiveAppBar() {
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
-  const navigate = useNavigate();
-  const location = useLocation();
-  const user = useSelector((state) => state.user.value);
+  const [anchorElNav, setAnchorElNav] = React.useState(null)
+  const [anchorElUser, setAnchorElUser] = React.useState(null)
+  const navigate = useNavigate()
+  const location = useLocation()
+  const user = useSelector((state) => state.user.value)
 
   const handleNavigation = (page) => {
-    navigate(page);
-  };
+    navigate(page)
+  }
 
   const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
-  };
+    setAnchorElNav(event.currentTarget)
+  }
   const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
-  };
+    setAnchorElUser(event.currentTarget)
+  }
 
   const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
+    setAnchorElNav(null)
+  }
 
   const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
+    setAnchorElUser(null)
+  }
 
   useEffect(() => {
     if (location.pathname === "/Logout") {
-      localStorage.removeItem("token");
-      navigate("/login");
+      localStorage.removeItem("token")
+      navigate("/login")
     }
-  }, [location.pathname]);
+  }, [location.pathname])
 
   return (
-    <AppBar
-      position="fixed"
-      sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
-    >
+    <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <AnalyticsIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} />
@@ -73,9 +70,8 @@ function ResponsiveAppBar() {
               fontWeight: 700,
               letterSpacing: ".3rem",
               color: "inherit",
-              textDecoration: "none",
-            }}
-          >
+              textDecoration: "none"
+            }}>
             Project Flow
           </Typography>
 
@@ -86,8 +82,7 @@ function ResponsiveAppBar() {
               aria-controls="menu-appbar"
               aria-haspopup="true"
               onClick={handleOpenNavMenu}
-              color="inherit"
-            >
+              color="inherit">
               <MenuIcon />
             </IconButton>
             <Menu
@@ -95,19 +90,18 @@ function ResponsiveAppBar() {
               anchorEl={anchorElNav}
               anchorOrigin={{
                 vertical: "bottom",
-                horizontal: "left",
+                horizontal: "left"
               }}
               keepMounted
               transformOrigin={{
                 vertical: "top",
-                horizontal: "left",
+                horizontal: "left"
               }}
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
               sx={{
-                display: { xs: "block", md: "none" },
-              }}
-            >
+                display: { xs: "block", md: "none" }
+              }}>
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
                   <NavLink to={page}>
@@ -131,18 +125,13 @@ function ResponsiveAppBar() {
               fontWeight: 700,
               letterSpacing: ".3rem",
               color: "inherit",
-              textDecoration: "none",
-            }}
-          >
+              textDecoration: "none"
+            }}>
             Project Flow
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={() => handleNavigation(page)}
-                sx={{ my: 2, color: "white", display: "block", px: 4 }}
-              >
+              <Button key={page} onClick={() => handleNavigation(page)} sx={{ my: 2, color: "white", display: "block", px: 4 }}>
                 {page}
               </Button>
             ))}
@@ -160,23 +149,19 @@ function ResponsiveAppBar() {
               anchorEl={anchorElUser}
               anchorOrigin={{
                 vertical: "top",
-                horizontal: "right",
+                horizontal: "right"
               }}
               keepMounted
               transformOrigin={{
                 vertical: "top",
-                horizontal: "right",
+                horizontal: "right"
               }}
               open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
+              onClose={handleCloseUserMenu}>
               {settings.map((setting) => (
                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
                   <NavLink to={setting}>
-                    <Typography
-                      textAlign="center"
-                      sx={{ color: "white", textDecoration: "none" }}
-                    >
+                    <Typography textAlign="center" sx={{ color: "white", textDecoration: "none" }}>
                       {setting}
                     </Typography>
                   </NavLink>
@@ -187,6 +172,6 @@ function ResponsiveAppBar() {
         </Toolbar>
       </Container>
     </AppBar>
-  );
+  )
 }
-export default ResponsiveAppBar;
+export default ResponsiveAppBar
