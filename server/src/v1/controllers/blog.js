@@ -1,9 +1,13 @@
 const Blog=require('../models/blog')
 
 exports.create = async (req, res) => {
+  const content= req.body.content
     try {
       const blog = await Blog.create(
-        req.body
+        {
+          user: req.user._id,
+          content:content,
+        }
       )
       res.status(201).json(blog)
     } catch (err) {
