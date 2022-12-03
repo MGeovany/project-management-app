@@ -1,35 +1,35 @@
-import axios from "axios";
-import queryString from "query-string";
+import axios from "axios"
+import queryString from "query-string"
 
-const baseUrl = "http://127.0.0.1:4000/api/v1/";
-const getToken = () => localStorage.getItem("token");
+const baseUrl = "http://127.0.0.1:4000/api/v1/"
+const getToken = () => localStorage.getItem("token")
 
 const axiosClient = axios.create({
   baseURL: baseUrl,
-  paramsSerializer: (params) => queryString.stringify({ params }),
-});
+  paramsSerializer: (params) => queryString.stringify({ params })
+})
 
 axiosClient.interceptors.request.use(async (config) => {
   return {
     ...config,
     headers: {
       "Content-Type": "application/json",
-      authorization: `Bearer ${getToken()}`,
-    },
-  };
-});
+      authorization: `Bearer ${getToken()}`
+    }
+  }
+})
 
 axiosClient.interceptors.response.use(
   (response) => {
-    if (response && response.data) return response.data;
-    return response;
+    if (response && response.data) return response.data
+    return response
   },
   (err) => {
     if (!err.response) {
-      return alert(err);
+      return alert(err)
     }
-    throw err.response;
+    throw err.response
   }
-);
+)
 
-export default axiosClient;
+export default axiosClient

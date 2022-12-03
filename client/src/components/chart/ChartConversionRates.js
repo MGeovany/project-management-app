@@ -1,24 +1,24 @@
-import PropTypes from 'prop-types';
-import ReactApexChart from 'react-apexcharts';
+import PropTypes from "prop-types"
+import ReactApexChart from "react-apexcharts"
 // @mui
-import { Box, Card, CardHeader } from '@mui/material';
+import { Box, Card, CardHeader } from "@mui/material"
 // utils
-import { fNumber } from './formatNumber';
+import { fNumber } from "./formatNumber"
 // components
-import { useChart } from './useChart';
+import { useChart } from "./useChart"
 
 // ----------------------------------------------------------------------
 
 ChartConversionRates.propTypes = {
   title: PropTypes.string,
   subheader: PropTypes.string,
-  chartData: PropTypes.array.isRequired,
-};
+  chartData: PropTypes.array.isRequired
+}
 
 export default function ChartConversionRates({ title, subheader, chartData, ...other }) {
-  const chartLabels = chartData.map((i) => i.label);
+  const chartLabels = chartData.map((i) => i.label)
 
-  const chartSeries = chartData.map((i) => i.value);
+  const chartSeries = chartData.map((i) => i.value)
 
   const chartOptions = useChart({
     tooltip: {
@@ -26,17 +26,17 @@ export default function ChartConversionRates({ title, subheader, chartData, ...o
       y: {
         formatter: (seriesName) => fNumber(seriesName),
         title: {
-          formatter: () => '',
-        },
-      },
+          formatter: () => ""
+        }
+      }
     },
     plotOptions: {
-      bar: { horizontal: true, barHeight: '28%', borderRadius: 2 },
+      bar: { horizontal: true, barHeight: "28%", borderRadius: 2 }
     },
     xaxis: {
-      categories: chartLabels,
-    },
-  });
+      categories: chartLabels
+    }
+  })
 
   return (
     <Card {...other}>
@@ -46,5 +46,5 @@ export default function ChartConversionRates({ title, subheader, chartData, ...o
         <ReactApexChart type="bar" series={[{ data: chartSeries }]} options={chartOptions} height={364} />
       </Box>
     </Card>
-  );
+  )
 }

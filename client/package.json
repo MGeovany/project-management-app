@@ -20,6 +20,7 @@
     "emoji-mart": "3.0.1",
     "html-react-parser": "^3.0.4",
     "moment": "^2.29.3",
+    "prettier": "^2.7.1",
     "query-string": "^7.1.1",
     "react": "^18.2.0",
     "react-apexcharts": "^1.4.0",
@@ -37,7 +38,11 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint src --ext .js,.jsx && npm run stylelint",
+    "stylelint": "stylelint \"src/**/*.scss\"",
+    "format": "npm run format:js",
+    "format:js": "prettier --write \"src/**/*.js{,x}\""
   },
   "eslintConfig": {
     "extends": [
@@ -56,5 +61,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "eslint": "^8.28.0"
   }
 }
