@@ -34,7 +34,7 @@
     flex-direction: row;
     width: 50%;
     color: white;
-    font-family: 'monospace';
+    font-family: 'Roboto';
     font-weight: 700;
   }
 
@@ -51,7 +51,7 @@
     border: none;
     border-radius: 8px;
     color: rgb(59, 130, 246);
-    font-family: 'monospace';
+    font-family: 'Roboto';
     font-weight: 700;
   }
   
@@ -99,7 +99,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    font-family: 'monospace';
+    font-family: 'Roboto';
     font-weight: 700;
   }
   
@@ -111,7 +111,7 @@
   
   .comment-text {
     font-size: 18px;
-    font-family: 'monospace';
+    font-family: 'Roboto';
     font-weight: 700;
   }
   

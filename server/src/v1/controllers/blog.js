@@ -6,7 +6,7 @@ exports.create = async (req, res) => {
       const blog = await Blog.create(
         {
           user: req.user._id,
-          content:content,
+          content:content
         }
       )
       res.status(201).json(blog)

@@ -15,7 +15,7 @@ router.delete(
   '/:blogId',
   param('blogId').custom(value => {
     if (!validation.isObjectId(value)) {
-      return Promise.reject('invalid section id')
+      return Promise.reject('invalid blog id')
     } else return Promise.resolve()
   }),
   validation.validate,
@@ -27,7 +27,7 @@ router.put(
   '/:blogId',
   param('blogId').custom(value => {
     if (!validation.isObjectId(value)) {
-      return Promise.reject('invalid section id')
+      return Promise.reject('invalid blog id')
     } else return Promise.resolve()
   }),
   validation.validate,

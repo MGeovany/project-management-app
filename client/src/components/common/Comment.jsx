@@ -2,29 +2,33 @@ import { Avatar, Box, IconButton, Tooltip } from "@mui/material";
 import React from "react";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 import EditIcon from '@mui/icons-material/Edit';
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import parse from 'html-react-parser'
 import '../../css/custom-blogs.css'
+import { setBlogs } from "../../redux/features/blogSlice";
 import { CommentForm } from "./CommentForm";
+import blogApi from "../../api/blogApi";
 
-export const Comment = ({ 
+export const Comment = ({
     comment, 
-    currentUserId, 
-    deleteComment, 
-    activeComment, 
-    setActiveComment,
-    updateComment
+    data,
+    date,
+    currentUserId
  }) => {
   const user = useSelector((state) => state.user.value);
-  const timer = 600000; //Ten Minutes
-  const timePassed = new Date() - new Date(comment.createdAt) > timer; // If the Post was uploaded before 5 minutes past they can Edit or Delete
-  const canEdit = currentUserId === comment.userId && !timePassed;
-  const canDelete = currentUserId === comment.userId && !timePassed;
-  const createdAt = new Date(comment.createdAt).toLocaleDateString();
-  const isEditing = 
-  activeComment && 
-  activeComment.type === 'editing' && 
-  activeComment.id === comment.id;
+  const blog = useSelector((state) => state.blog.value);
+  const createdAt = new Date(date).toLocaleDateString();
+  const dispatch = useDispatch();
+  
+  const deleteBlog = async () => {
+    try {
+      await blogApi.delete()
+      const newList = blog.filter((e) => e.id === data.id)
+      dispatch(setBlogs(newList))
+    } catch (err) {
+      alert(err)
+    }
+  }
   return (
     <>
     <Box className="comment">
@@ -38,36 +42,29 @@ export const Comment = ({
         <Box className="comment-right-part">
             <Box className="comment-content">
                 <Box className="comment-content">
-                    <Box className="comment-author">{comment.username}</Box>
+                    <Box className="comment-author">{user.username}</Box>
                     <Box>{createdAt}</Box>
                 </Box>
                 <Box className="comment-content">
-                    {canDelete && 
-                    <IconButton variant="outlined" color="error" onClick={() => deleteComment(comment.id)}>
+                    <IconButton variant="outlined" color="error" > {/*onClick={deleteBlog}*/}
                     <DeleteOutlinedIcon />
-                    </IconButton>}
-                    {canEdit && 
-                    <IconButton color="primary"
-                    onClick={() => setActiveComment({
-                        id:comment.id,
-                        type: 'editing'
-                    })}
-                    >
+                    </IconButton>
+                    <IconButton color="primary"> {/*onClick={'Delete'}/>*/}
                     <EditIcon/>
-                    </IconButton>}
+                    </IconButton>
                 </Box>
             </Box>
-            {!isEditing && <Box className="comment-text">{parse(comment.content)}</Box>}
-            {isEditing && (
+            <Box className="comment-text">{parse(comment)}</Box>
+            {/* {isEditing && (
                 <CommentForm 
                 submitLabel='Update' 
                 hasCancelButton 
-                initialText={comment.content}
+                initialText={comment}
                 handleSubmit={(text) => updateComment(text, comment.id)}
                 handleCancel={() => setActiveComment(null)}
                 className="comment-edit"
                 />
-            )}
+            )} */}
         </Box>
     </Box>
     </>

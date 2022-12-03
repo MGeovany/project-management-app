@@ -8,45 +8,28 @@ import { getComments as getCommentsApi,
 } from '../../api/commentsApi'
 import { Comment } from "./Comment";
 import { CommentForm } from './CommentForm'
+import blogApi from "../../api/blogApi";
+import { setBlogs } from "../../redux/features/blogSlice";
+import { useSelector, useDispatch } from "react-redux";
 import '../../css/custom-blogs.css'
 
 export const Comments = ({ currentUserId }) => {
     const [backendComments, setBackendComments] = useState([]);
     const [activeComment, setActiveComment] = useState(null)
-    const rootComments = backendComments.filter(
-    (backendComment) => backendComment.parentId === null
-    );
+    const dispatch = useDispatch();
+    const blog = useSelector(state => state.blog.value)
 
-    const addComment = (text, parentId) => {
-        createCommentApi(text, parentId).then((comment) => {
-            setBackendComments([comment, ...backendComments]);
-            setActiveComment(null)
-        });
-    };
-
-    const updateComment = (text, commentId) => {
-        updateCommentApi(text).then(() => {
-          const updatedBackendComments = backendComments.map((backendComment) => {
-            if (backendComment.id === commentId) {
-              return { ...backendComment, content: text };
-            }
-            return backendComment;
-          });
-          setBackendComments(updatedBackendComments);
-          setActiveComment(null);
-        });
-      };
-
-    const deleteComment = (commentId) => {
-        if(window.confirm('Are you sure you want to remove this post?')){
-            deleteCommentApi(commentId).then(() =>{
-                const updatedBackendComments = backendComments
-                .filter((backendComment) => 
-                backendComment.id !== commentId);
-                setBackendComments(updatedBackendComments);
-            });
+    useEffect(() => {
+      const getBlogs = async () => {
+        try{
+          const res = await blogApi.getAll();
+          dispatch(setBlogs(res));
+        } catch(err) {
+          alert(err);
         }
-    }
+      };
+      getBlogs();
+    }, [dispatch]);
 
     useEffect(() => {
         getCommentsApi().then((data) => {
@@ -55,22 +38,19 @@ export const Comments = ({ currentUserId }) => {
     }, [])
   return (
     <Box className="comments">
-        <CommentForm submitLabel="Submit" handleSubmit={addComment} />
+        <CommentForm submitLabel="Submit"/>
         <Box className="comments-container">
-            {rootComments.map((rootComment) => (
-                <Box>
+            {blog.length > 0 && blog.map((item, i) => (
+                <Box key={i}>
                   <Divider sx={{
                     marginBottom: 5,
                   }}/>
                   <Comment 
-                  key={rootComment.id} 
-                  comment={rootComment} 
-                  currentUserId={currentUserId}
-                  deleteComment={deleteComment}
-                  activeComment={activeComment}
-                  updateComment={updateComment}
-                  setActiveComment={setActiveComment}
-                  addComment={addComment}
+                  key={item.id}
+                  comment={item.content} 
+                  date={item.date}
+                  data={item}
+                  currentUserId={item.user.id}
                   />
                   <Divider/>
                 </Box>

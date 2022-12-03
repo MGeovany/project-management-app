@@ -3,14 +3,13 @@
     ];
  };
 
- export const createComment = async (text, parentId) => {
+ export const createComment = async (text, userId, parentId) => {
     return {
       id: Math.random().toString(36).substr(2, 9), 
       content: text,
       parentId: null,
-      userId: "1",
-      username: "Randell",
-      createdAt: new Date().toISOString(),
+      userId: userId,
+      createdAt: Date(),
     };
   };
   
