@@ -1,6 +1,5 @@
 import React from "react";
 import { Box, Button, Divider, Grid, Typography } from "@mui/material";
-
 import "../css/DashboardStyles.css";
 import { useSelector } from "react-redux";
 import ChartConversionRates from "../components/chart/ChartConversionRates";
@@ -8,7 +7,7 @@ import CalendarItem from "../components/common/CalendarItem";
 
 export const Dashboard = () => {
   const boards = useSelector((state) => state.board.value);
-
+  
   return (
     <Box
       sx={{
