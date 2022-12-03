@@ -122,7 +122,6 @@ const TaskModal = (props) => {
     }
   }
 
-  console.log(task, "imtask")
   return (
     <Modal
       open={task !== undefined}

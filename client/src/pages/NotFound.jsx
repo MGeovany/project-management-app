@@ -36,7 +36,7 @@ const NotFound = () => {
                 startIcon={<ArrowBackIcon fontSize="small" />}
                 sx={{ mt: 3 }}
                 variant="contained"
-                onClick={handleSubmit}>
+                onClick={() => handleSubmit()}>
                 Go back to dashboard
               </Button>
             </Box>

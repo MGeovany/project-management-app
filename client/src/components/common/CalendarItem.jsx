@@ -96,7 +96,13 @@ const CalendarItem = () => {
         className="CalendarItems"
         style={{
           height: 500,
-          margin: 50
+          margin: 50,
+          backgroundColor: "white",
+          fontFamily: "roboto",
+          color: "#333",
+          fontWeight: "bolder",
+          borderRadius: "30px",
+          borderColor: "transparent"
         }}
       />
     </>

@@ -5,10 +5,15 @@ import "../css/DashboardStyles.css"
 import { useSelector } from "react-redux"
 import ChartConversionRates from "../components/chart/ChartConversionRates"
 import CalendarItem from "../components/common/CalendarItem"
+import { useNavigate } from "react-router-dom"
 
 export const Dashboard = () => {
   const boards = useSelector((state) => state.board.value)
+  const navigate = useNavigate()
 
+  const handleClick = (boardID) => {
+    navigate(`/boards/${boardID}`)
+  }
   return (
     <Box
       sx={{
@@ -38,10 +43,10 @@ export const Dashboard = () => {
                       flexDirection: "column",
                       alignItems: "center"
                     }}>
-                    <Typography variant="body2" sx={{ paddingTop: 2 }}>
-                      Number of Tasks: {i > 0 ? 1 : 5}
+                    <Typography variant="body2" sx={{ paddingTop: 2, textAlign: "center", color: "#7777" }}>
+                      {data.description}
                     </Typography>
-                    <Button>View More</Button>
+                    <Button onClick={() => handleClick(data.id)}>View More</Button>
                   </Box>
                 </Box>
               </Grid>
@@ -66,7 +71,7 @@ export const Dashboard = () => {
             ]}
           />
         </Box>
-        <Typography align="left" variant="h4" component="h2" sx={{ paddingBottom: 5 }}>
+        <Typography align="center" variant="h4" sx={{ paddingY: 5, textAlign: "center", width: "100%" }}>
           Calendar
         </Typography>
         <Box width={"100%"} className="SideGraphBox">

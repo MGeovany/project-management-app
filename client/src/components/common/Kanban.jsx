@@ -14,7 +14,6 @@ const Kanban = (props) => {
   const boardId = props.boardId
   const [data, setData] = useState([])
   const [selectedTask, setSelectedTask] = useState(undefined)
-  console.log(data)
   useEffect(() => {
     setData(props.data)
   }, [props.data])
