@@ -2,8 +2,11 @@ import React from "react"
 import { ButtonBase, Grid, Paper, Typography } from "@mui/material"
 import WorkspacesIcon from "@mui/icons-material/Workspaces"
 import { NavLink } from "react-router-dom"
+import { useSelector } from "react-redux"
 
 export const ProjectCard = ({ data }) => {
+  const user = useSelector((state) => state.user.value)
+
   return (
     <Paper
       sx={{
@@ -28,7 +31,7 @@ export const ProjectCard = ({ data }) => {
                   {data.title}
                 </Typography>
                 <Typography variant="body2" gutterBottom>
-                  marloncastro
+                  {user.username}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
                   ID: {data.id.slice(0, 10).toUpperCase()}
