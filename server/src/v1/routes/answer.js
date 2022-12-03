@@ -1,5 +1,0 @@
-const router = require('express').Router()
-const { param } = require('express-validator')
-const validation = require('../handlers/validation')
-const tokenHandler = require('../handlers/tokenHandler')
-const answerController = require('../controllers/answer')

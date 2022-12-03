@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 const { schemaOptions } = require('./modelOptions')
 
-const answerSchema = new Schema({
+const blogSchema = new Schema({
   user: {
     type: Schema.Types.ObjectId,
     ref: 'User',
@@ -13,16 +13,12 @@ const answerSchema = new Schema({
     type: String,
     default: ''
   },
-  comment:{
-    type: Schema.Types.ObjectId,
-    ref:'Comment',
-    auntopopulate:true
-  },
   date:{
     type:Date,
     default: Date.now
   }
 }, schemaOptions)
-answerSchema.plugin(require('mongoose-autopopulate'));
 
-module.exports = mongoose.model('Answer', answerSchema)
+blogSchema.plugin(require('mongoose-autopopulate'));
+
+module.exports = mongoose.model('Blog', blogSchema)

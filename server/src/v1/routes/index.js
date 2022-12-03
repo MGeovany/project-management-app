@@ -4,7 +4,6 @@ router.use('/auth', require('./auth'))
 router.use('/boards', require('./board'))
 router.use('/boards/:boardId/sections', require('./section'))
 router.use('/boards/:boardId/tasks', require('./task'))
-//router.use('/boards', require('./comment'))
-//router.use('/boards/blog', require('./answer'))
+router.use('/blog', require('./blog'))
 
 module.exports = router;
