@@ -34,7 +34,7 @@ export const ProjectCard = ({ data }) => {
                   {user.username}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                  ID: {data.id.slice(0, 10).toUpperCase()}
+                  ID: {user.id.slice(0, 10).toUpperCase()}
                 </Typography>
               </Grid>
               <Grid item>
