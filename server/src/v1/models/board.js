@@ -34,6 +34,10 @@ const boardSchema = new Schema({
     type: Number,
     default: 0,
     max:100
+  },
+  status:{
+    type:String,
+    default:"iniciado"
   }
 }, schemaOptions)
 boardSchema.plugin(require('mongoose-autopopulate'));
