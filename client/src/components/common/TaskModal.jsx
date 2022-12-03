@@ -88,15 +88,12 @@ const TaskModal = (props) => {
   }
 
   const updateParticipants = async (newParticipantList) => {
-    clearTimeout(timer)
-
-    timer = setTimeout(async () => {
-      try {
-        await taskApi.updateParticipant(boardId, task.id, { participant: newParticipantList })
-      } catch (err) {
-        alert(err)
-      }
-    }, timeout)
+    console.log(newParticipantList)
+    try {
+      await taskApi.updateParticipant(boardId, task.id, { participants: newParticipantList })
+    } catch (err) {
+      alert(err)
+    }
 
     task.participants = newParticipantList
     setParticipants(participants)

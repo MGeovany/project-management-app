@@ -121,7 +121,7 @@ export default function UserFilter({ boardId, taskId, participants, onUpdatePart
   }, [])
 
   useEffect(() => {
-    onUpdateParticipants(value)
+    onUpdateParticipants(value.map((a) => a.id))
   }, [value])
 
   const handleClick = (event) => {

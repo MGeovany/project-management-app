@@ -53,7 +53,7 @@ export const Dashboard = () => {
             )
           })}
       </Grid>
-      <Box
+      {/*  <Box
         sx={{
           display: "flex",
           flexDirection: "row",
@@ -71,12 +71,13 @@ export const Dashboard = () => {
             ]}
           />
         </Box>
-        <Typography align="center" variant="h4" sx={{ paddingY: 5, textAlign: "center", width: "100%" }}>
-          Calendar
-        </Typography>
-        <Box width={"100%"} className="SideGraphBox">
-          <CalendarItem />
         </Box>
+        */}
+      <Typography align="center" variant="h4" sx={{ paddingY: 5, textAlign: "center", width: "100%" }}>
+        Calendar
+      </Typography>
+      <Box width={"100%"} className="SideGraphBox">
+        <CalendarItem />
       </Box>
     </Box>
   )
