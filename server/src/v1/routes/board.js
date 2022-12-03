@@ -17,7 +17,7 @@ router.get(
       return Promise.reject('invalid id')
     } else return Promise.resolve()
   }),
-  boardController.allTaskForBoard
+  boardController.allTaskBoard
 )
 
 router.get(
