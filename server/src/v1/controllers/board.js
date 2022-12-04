@@ -1,7 +1,5 @@
-const board = require('../models/board')
 const Board = require('../models/board')
 const Section = require('../models/section')
-const task = require('../models/task')
 const Task = require('../models/task')
 const User=require('../models/user')
 
@@ -30,8 +28,10 @@ exports.allTaskForBoard = async (req, res)=>{
   const { boardId } = req.params
   try {
     const section = await Section.find({ board: boardId })
-    const task = await Task.find({section:section[0].id})
-    res.status(201).json(task)
+    for (let i = 0; i < section.length; i++) {
+      const task = await Task.find({section:section[i].id})
+      res.status(201).json(task)
+    }
   } catch (err) {
     res.status(500).json(err)
   }

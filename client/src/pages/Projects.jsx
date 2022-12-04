@@ -14,11 +14,11 @@ export const Projects = () => {
       <Typography align="left" variant="h5" component="h2" sx={{ paddingBottom: 5 }}>
         Projects
       </Typography>
-      <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
+      <Grid container spacing={{ xs: 2, md: 4 }} columns={{ xs: 2, sm: 3, md: 16 }}>
         {boards &&
           boards.map((board, i) => {
             return (
-              <Grid item xs={2} sm={4} md={4} key={i}>
+              <Grid item xs={2} sm={3} md={4} key={i} style={{ height: "100%" }}>
                 <ProjectCard data={board} />
               </Grid>
             )

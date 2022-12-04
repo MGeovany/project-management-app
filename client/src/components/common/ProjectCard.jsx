@@ -2,20 +2,23 @@ import React from "react"
 import { ButtonBase, Grid, Paper, Typography } from "@mui/material"
 import WorkspacesIcon from "@mui/icons-material/Workspaces"
 import { NavLink } from "react-router-dom"
+import { useSelector } from "react-redux"
 
 export const ProjectCard = ({ data }) => {
+  const user = useSelector((state) => state.user.value)
+
   return (
     <Paper
       sx={{
         p: 5,
         margin: "auto",
         maxWidth: 500,
-        minHeight: 100,
+        minHeight: 230,
         flexGrow: 1,
         backgroundColor: (theme) => (theme.palette.mode === "dark" ? "#1A2027" : "#fff")
       }}>
-      <Grid container spacing={2}>
-        <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
+      <Grid container spacing={2} sx={{ height: "100%" }}>
+        <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 6, md: 12 }}>
           <Grid item>
             <ButtonBase sx={{ width: 128, height: 128 }}>
               <WorkspacesIcon fontSize={"large"} sx={{ width: 70, height: 70 }} />
@@ -28,10 +31,10 @@ export const ProjectCard = ({ data }) => {
                   {data.title}
                 </Typography>
                 <Typography variant="body2" gutterBottom>
-                  marloncastro
+                  {user.username}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                  ID: {data.id.slice(0, 10).toUpperCase()}
+                  ID: {user.id.slice(0, 10).toUpperCase()}
                 </Typography>
               </Grid>
               <Grid item>

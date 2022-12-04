@@ -121,7 +121,7 @@ export default function UserFilter({ boardId, taskId, participants, onUpdatePart
   }, [])
 
   useEffect(() => {
-    onUpdateParticipants(value)
+    onUpdateParticipants(value.map((a) => a.id))
   }, [value])
 
   const handleClick = (event) => {
@@ -139,8 +139,7 @@ export default function UserFilter({ boardId, taskId, participants, onUpdatePart
 
   const open = Boolean(anchorEl)
   const id = open ? "github-label" : undefined
-  console.log("pendingValue ss", pendingValue)
-  console.log("value sss", value)
+
   return (
     <React.Fragment>
       <Box sx={{ width: 221, fontSize: 14 }}>

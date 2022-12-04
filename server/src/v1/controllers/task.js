@@ -97,12 +97,3 @@ exports.updatePosition = async (req, res) => {
     res.status(500).json(err)
   }
 };
-
-/* exports.getTaskSectionBoard = async (req,res)=>{
-  try {
-    const board = await Board.findById({boardId: req.user._id })
-    res.status(200).json(board)
-  } catch (error) {
-    res.status(500).json(err)
-  }
-}; */
