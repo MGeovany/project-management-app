@@ -1,12 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit"
-import userReducer from './features/userSlice'
-import boardReducer from './features/boardSlice'
-import favouriteReducer from './features/favouriteSlice'
+import userReducer from "./features/userSlice"
+import boardReducer from "./features/boardSlice"
+import favouriteReducer from "./features/favouriteSlice"
+import blogreducer from "./features/blogSlice"
 
 export const store = configureStore({
   reducer: {
     user: userReducer,
     board: boardReducer,
-    favourites: favouriteReducer
+    favourites: favouriteReducer,
+    blog: blogreducer
   }
 })

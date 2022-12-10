@@ -1,17 +1,16 @@
-import { Box, Container, Grid, Typography } from "@mui/material";
-import { useSelector } from "react-redux";
-import { AccountProfile } from "../components/common/AccountProfile";
-import { AccountProfileDetails } from "../components/common/AccountProfileDetails";
+import { Box, Container, Grid, Typography } from "@mui/material"
+import { useSelector } from "react-redux"
+import { AccountProfile } from "../components/common/AccountProfile"
+import { AccountProfileDetails } from "../components/common/AccountProfileDetails"
 
 export const Profile = () => {
-  const user = useSelector((state) => state.user.value);
+  const user = useSelector((state) => state.user.value)
   return (
     <>
       <Box
         sx={{
-          paddingTop: 10,
-        }}
-      >
+          paddingTop: 10
+        }}>
         <Typography align="left" variant="h5" component="h2">
           Profile
         </Typography>
@@ -19,9 +18,8 @@ export const Profile = () => {
           component="main"
           sx={{
             flexGrow: 1,
-            py: 5,
-          }}
-        >
+            py: 5
+          }}>
           <Container maxWidth="lg">
             <Grid container spacing={3}>
               <Grid item lg={4} md={6} xs={12}>
@@ -35,5 +33,5 @@ export const Profile = () => {
         </Box>
       </Box>
     </>
-  );
-};
+  )
+}

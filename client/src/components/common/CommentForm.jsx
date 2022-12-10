@@ -1,15 +1,21 @@
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import { Box } from "@mui/material";
+import blogApi from "../../api/blogApi";
+import { setBlogs } from "../../redux/features/blogSlice";
 import React from "react";
-import { useState, useRef } from 'react'
+import { useState, useEffect, useRef } from 'react'
+import { useSelector, useDispatch } from "react-redux";
+import { createComment as createCommentApi } from "../../api/commentsApi";
 
 export const CommentForm = ({
-  handleSubmit, 
   submitLabel, 
   hasCancelButton = false, 
   initialText="", 
   handleCancel}) => {
+  const dispatch = useDispatch();
+  const user = useSelector(state => state.user.value)
+  const [backendBlogs, setBackendBlogs] = useState([]);
   const [text, setText] = useState(initialText);
   const timeout = 200;
   const isTextDisabled = text.length === 0;
@@ -24,6 +30,23 @@ export const CommentForm = ({
     p: 1
   };
 
+  const addBlog = async () => {
+    const variables = {
+      content: text,
+      userId: user._id
+    }
+    createCommentApi(variables).then((comment) => {
+      setBackendBlogs([comment, ...backendBlogs]);
+    })
+    try {
+      const res = await blogApi.create(variables);
+      const newList = [res, ...backendBlogs];
+      dispatch(setBlogs(newList));
+    } catch (err) {
+      alert(err);
+    }
+  };
+
   const updateEditorHeight = () => {
     setTimeout(() => {
       if (editorWrapperRef.current) {
@@ -34,15 +57,9 @@ export const CommentForm = ({
     }, timeout);
   };
 
-  const onSubmit = event => {
-    event.preventDefault()
-    handleSubmit(text)
-    console.log(text);
-    setText('')
-  }
   return (
     <Box style={modalStyle} className='comment-form-textarea'>
-      <form onSubmit={onSubmit}>
+      <form>
         <Box className="comment-editor">
           <CKEditor
           editor={ClassicEditor}
@@ -60,6 +77,7 @@ export const CommentForm = ({
             <button 
             className="comment-form-button"
             disabled={isTextDisabled}
+            onClick={addBlog}
             >
               {submitLabel}
             </button>
