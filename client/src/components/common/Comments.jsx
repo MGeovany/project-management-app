@@ -1,12 +1,6 @@
 import React from "react"
 import { useState, useEffect } from "react"
 import { Box, Divider } from "@mui/material"
-import {
-  getComments as getCommentsApi,
-  createComment as createCommentApi,
-  updateComment as updateCommentApi,
-  deleteComment as deleteCommentApi
-} from "../../api/commentsApi"
 import { Comment } from "./Comment"
 import { CommentForm } from "./CommentForm"
 import blogApi from "../../api/blogApi"
@@ -14,36 +8,29 @@ import { setBlogs } from "../../redux/features/blogSlice"
 import { useSelector, useDispatch } from "react-redux"
 import "../../css/custom-blogs.css"
 
-export const Comments = ({ currentUserId }) => {
-  const [backendComments, setBackendComments] = useState([])
+export const Comments = () => {
   const [info, setInfo] = useState([])
-  const [activeComment, setActiveComment] = useState(null)
+  const [activeComment, setActiveComment] = useState(null);
   const dispatch = useDispatch()
   const blog = useSelector((state) => state.blog.value)
-
-  useEffect(() => {
-    const getBlogs = async () => {
-      try {
-        const res = await blogApi.getAll()
-        dispatch(setBlogs(res))
-        setInfo(res)
-      } catch (err) {
-        alert(err)
-      }
+  const getBlogs = async () => {
+    try {
+      const res = await blogApi.getAll()
+      setInfo(res)
+      dispatch(setBlogs(res))
+      setActiveComment(null)
+    } catch (err) {
+      alert(err)
     }
-    getBlogs()
-  }, [dispatch])
-
+  }
+  
   useEffect(() => {
-    getCommentsApi().then((data) => {
-      setBackendComments(data)
-    })
-  }, [])
+    getBlogs();
+  },[dispatch])
 
-  console.log(backendComments)
   return (
     <Box className="comments">
-      <CommentForm submitLabel="Submit" />
+      <CommentForm submitLabel="Submit" getBlogs={getBlogs}/>
       <Box className="comments-container">
         {blog.length > 0 &&
           blog.map((item, i) => (
@@ -60,6 +47,9 @@ export const Comments = ({ currentUserId }) => {
                 date={item.date}
                 data={item}
                 currentUserId={item.user.id}
+                getBlogs={getBlogs}
+                activeComment={activeComment}
+                setActiveComment={setActiveComment}
               />
               <Divider />
             </Box>
