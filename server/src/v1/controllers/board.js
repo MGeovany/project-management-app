@@ -24,7 +24,7 @@ exports.getAll = async (req, res) => {
     res.status(500).json(err)
   }
 }
-exports.allTaskForBoard = async (req, res)=>{
+exports.allTaskBoard = async (req, res)=>{
   const { boardId } = req.params
   try {
     const section = await Section.find({ board: boardId })
