@@ -3,7 +3,6 @@ import queryString from "query-string"
 
 const baseUrl = "http://127.0.0.1:4000/api/v1/"
 const getToken = () => localStorage.getItem("token")
-console.log(getToken())
 const axiosClient = axios.create({
   baseURL: baseUrl,
   paramsSerializer: (params) => queryString.stringify({ params })
@@ -26,7 +25,7 @@ axiosClient.interceptors.response.use(
   },
   (err) => {
     if (!err.response) {
-      return alert(err)
+      return console.log(err)
     }
     throw err.response
   }

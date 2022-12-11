@@ -10,7 +10,7 @@ import "../../css/custom-blogs.css"
 
 export const Comments = () => {
   const [info, setInfo] = useState([])
-  const [activeComment, setActiveComment] = useState(null);
+  const [activeComment, setActiveComment] = useState(null)
   const dispatch = useDispatch()
   const blog = useSelector((state) => state.blog.value)
   const getBlogs = async () => {
@@ -20,17 +20,17 @@ export const Comments = () => {
       dispatch(setBlogs(res))
       setActiveComment(null)
     } catch (err) {
-      alert(err)
+      console.log(err)
     }
   }
-  
+
   useEffect(() => {
-    getBlogs();
-  },[dispatch])
+    getBlogs()
+  }, [dispatch])
 
   return (
     <Box className="comments">
-      <CommentForm submitLabel="Submit" getBlogs={getBlogs}/>
+      <CommentForm submitLabel="Submit" getBlogs={getBlogs} />
       <Box className="comments-container">
         {blog.length > 0 &&
           blog.map((item, i) => (

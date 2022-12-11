@@ -114,7 +114,7 @@ export default function UserFilter({ boardId, taskId, participants, onUpdatePart
         const res = await participantsApi.getAll()
         setUsers(res)
       } catch (err) {
-        alert(err)
+        console.log(err)
       }
     }
     getBoard()

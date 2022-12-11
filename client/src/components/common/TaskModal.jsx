@@ -67,7 +67,7 @@ const TaskModal = (props) => {
       props.onDelete(task)
       setTask(undefined)
     } catch (err) {
-      alert(err)
+      console.log(err)
     }
   }
 
@@ -78,7 +78,7 @@ const TaskModal = (props) => {
       try {
         await taskApi.update(boardId, task.id, { title: newTitle })
       } catch (err) {
-        alert(err)
+        console.log(err)
       }
     }, timeout)
 
@@ -88,11 +88,10 @@ const TaskModal = (props) => {
   }
 
   const updateParticipants = async (newParticipantList) => {
-    console.log(newParticipantList)
     try {
       await taskApi.updateParticipant(boardId, task.id, { participants: newParticipantList })
     } catch (err) {
-      alert(err)
+      console.log(err)
     }
 
     task.participants = newParticipantList
@@ -109,7 +108,7 @@ const TaskModal = (props) => {
         try {
           await taskApi.update(boardId, task.id, { content: data })
         } catch (err) {
-          alert(err)
+          console.log(err)
         }
       }, timeout)
 

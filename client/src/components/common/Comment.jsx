@@ -9,35 +9,25 @@ import { setBlogs } from "../../redux/features/blogSlice"
 import { CommentForm } from "./CommentForm"
 import blogApi from "../../api/blogApi"
 
-export const Comment = ({ 
-  comment, 
-  data, 
-  date,
-  getBlogs,
-  activeComment,
-  setActiveComment 
-}) => {
+export const Comment = ({ comment, data, date, getBlogs, activeComment, setActiveComment }) => {
   const blog = useSelector((state) => state.blog.value)
   const createdAt = new Date(date).toLocaleDateString()
-  const dispatch = useDispatch();
-  const dataId = data.id;
-  const isEditing =
-  activeComment &&
-  activeComment.type === 'editing' &&
-  activeComment.id === data.id;
+  const dispatch = useDispatch()
+  const dataId = data.id
+  const isEditing = activeComment && activeComment.type === "editing" && activeComment.id === data.id
 
   const deleteBlog = async (blogId) => {
     try {
-      if(window.confirm("Do you want to delete this Blog?")){
+      if (window.confirm("Do you want to delete this Blog?")) {
         await blogApi.delete(dataId, blogId)
         const newList = blog.filter((e) => e.id === blogId)
         dispatch(setBlogs(newList))
         getBlogs()
       }
     } catch (err) {
-      alert(err)
+      console.log(err)
     }
-  };
+  }
 
   return (
     <>
@@ -59,25 +49,28 @@ export const Comment = ({
               <IconButton type="button" variant="outlined" color="error" onClick={deleteBlog}>
                 <DeleteOutlinedIcon />
               </IconButton>
-              <IconButton type="button" color="primary" onClick={() => {
-                setActiveComment({id: data.id, type: 'editing'})
-              }}>
+              <IconButton
+                type="button"
+                color="primary"
+                onClick={() => {
+                  setActiveComment({ id: data.id, type: "editing" })
+                }}>
                 <EditIcon />
               </IconButton>
             </Box>
           </Box>
           {!isEditing && <Box className="comment-text">{parse(comment)}</Box>}
           {isEditing && (
-                <CommentForm 
-                submitLabel='Update' 
-                hasCancelButton 
-                dataId={dataId}
-                getBlogs={getBlogs}
-                initialText={comment}
-                handleCancel={() => setActiveComment(null)}
-                className="comment-edit"
-                />
-            )}
+            <CommentForm
+              submitLabel="Update"
+              hasCancelButton
+              dataId={dataId}
+              getBlogs={getBlogs}
+              initialText={comment}
+              handleCancel={() => setActiveComment(null)}
+              className="comment-edit"
+            />
+          )}
         </Box>
       </Box>
     </>
