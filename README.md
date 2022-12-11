@@ -10,4 +10,3 @@
 <img src='./client/public/assets/projects.png'/>
 <img src='./client/public/assets/profile.png'/>
 <img src='./client/public/assets/blog.png'/>
-s
