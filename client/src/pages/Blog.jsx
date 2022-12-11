@@ -31,8 +31,7 @@ export const Blog = () => {
           Blog
         </Typography>
       </Box>
-          <Comments 
-          currentUserId={'1'}
+          <Comments
           />
     </Box>
   );
