@@ -7,6 +7,7 @@ import parse from "html-react-parser"
 import "../../css/custom-blogs.css"
 import { setBlogs } from "../../redux/features/blogSlice"
 import { CommentForm } from "./CommentForm"
+import { ToastContainer, toast } from 'react-toastify';
 import blogApi from "../../api/blogApi"
 
 export const Comment = ({ 
@@ -26,14 +27,26 @@ export const Comment = ({
   activeComment.type === 'editing' &&
   activeComment.id === data.id;
 
+  const deleteSucess = () => {
+    toast.success("Blog Deleted Successfully", {
+      autoClose: 4000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      isLoading: false,
+      theme: "dark",
+      position: "bottom-right"
+    });
+  };
+
+
   const deleteBlog = async (blogId) => {
     try {
-      if(window.confirm("Do you want to delete this Blog?")){
         await blogApi.delete(dataId, blogId)
         const newList = blog.filter((e) => e.id === blogId)
         dispatch(setBlogs(newList))
+        deleteSucess();
         getBlogs()
-      }
     } catch (err) {
       alert(err)
     }
@@ -79,6 +92,7 @@ export const Comment = ({
                 />
             )}
         </Box>
+        <ToastContainer/>
       </Box>
     </>
   )

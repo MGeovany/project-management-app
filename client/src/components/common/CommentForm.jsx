@@ -35,6 +35,30 @@ export const CommentForm = ({
     p: 1
   };
 
+  const addSucess = () => {
+    toast.success("Blog Added Successfully", {
+      autoClose: 4000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      isLoading: false,
+      theme: "dark",
+      position: "bottom-right"
+    });
+  };
+
+  const updateSucess = () => {
+    toast.success("Blog Updated Successfully", {
+      autoClose: 4000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      isLoading: false,
+      theme: "dark",
+      position: "bottom-right"
+    });
+  };
+
   const addBlog = async () => {
     const variables = {
       id: Math.random().toString(36).substr(2, 9),
@@ -47,7 +71,7 @@ export const CommentForm = ({
     try {
       dispatch(setBlogs(backendBlogs));
       setText(initialText)
-      alert("Blog was added correctly!")
+      addSucess();
       getBlogs();
     } catch (err) {
       alert(err);
@@ -57,8 +81,8 @@ export const CommentForm = ({
   const updateBlog = async (text, blogId) => {
     try{
       await blogApi.update(blogId, { content: text })
-      alert("Blog was updated correctly!")
       setText(initialText);
+      updateSucess();
       getBlogs()
     }catch(err) {
       console.log(err)
@@ -119,6 +143,7 @@ export const CommentForm = ({
             </button>)}
           </Box>}
       </form>
+      <ToastContainer />
     </Box>
   );
 }
